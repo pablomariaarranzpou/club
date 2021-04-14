@@ -15,35 +15,68 @@ public class SociEstandard extends Soci {
 
     private Asseguranca _asseguranca;
 
+    /**
+     * Constructor per defecte de la classe SociEstandard
+     * @param nom
+     * @param dni
+     * @param tipusAsseguranca
+     * @param preu
+     * @throws ExcepcioClub
+     */
     public SociEstandard(String nom, String dni, String tipusAsseguranca, float preu) throws ExcepcioClub {
         super(nom, dni);
         comprova(tipusAsseguranca);
         _asseguranca = new Asseguranca(tipusAsseguranca, preu);
     }
-
+    
+    /**
+     * Métode abstracte implmentat a les classes filles(explicaciói a classe Soci)
+     * @return
+     */
     @Override
     public float calculaQuota(float quotaBase) throws ExcepcioClub {
         return quotaBase;
     }
-
+    
+    /**
+     * Métode abstracte implmentat a les classes filles(explicaciói a classe Soci)
+     * @return
+     */
     @Override
     public float calculaPreuExcursio(float preuExcursioBase) throws ExcepcioClub {
         return preuExcursioBase + _asseguranca.getPreu();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return "Nom: " + this.getNom() + ", DNI: " + this.getDNI() + ", " + _asseguranca.toString();
     }
 
+    /**
+     *
+     * @return
+     */
     public Asseguranca getAsseguranca() {
         return _asseguranca;
     }
 
+    /**
+     *
+     * @param asseguranca
+     */
     public void setAsseguranca(Asseguranca asseguranca) {
         _asseguranca = asseguranca;
     }
     
+    /**
+     *
+     * @param tipusAsseguranca
+     * @throws ExcepcioClub
+     */
     public void modificarAsseguranca(String tipusAsseguranca) throws ExcepcioClub {
         comprova(tipusAsseguranca);
         _asseguranca.setTipus(tipusAsseguranca);
