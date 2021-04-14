@@ -41,18 +41,33 @@ public class ClubUB {
         _nomClub = nomClub;
     }
 
-    public void cambiarNom(Soci soci, String nom) {
-        if (soci instanceof SociFederat) {
-            SociFederat s = (SociFederat) soci;
-            s.setNom(nom);
-        } else if (soci instanceof SociEstandard) {
-            SociEstandard s = (SociEstandard) soci;
-            s.setNom(nom);
+    public void cambiarNom(String dni, String nom) throws ExcepcioClub {
+        Soci soci = null;
+        boolean trobat = false;
+        for (int i = 0; i < this._llistaSocis.getSize(); i++) {
+            if (this._llistaSocis.getAt(i).getDNI().equals(dni));
+            soci = this._llistaSocis.getAt(i);
+            trobat = true;
+        }
+
+        if (trobat == true) {
+            if (soci instanceof SociFederat) {
+                SociFederat s = (SociFederat) soci;
+                s.setNom(nom);
+            } else if (soci instanceof SociEstandard) {
+                SociEstandard s = (SociEstandard) soci;
+                s.setNom(nom);
+            } else if (soci instanceof SociJunior) {
+                SociJunior s = (SociJunior) soci;
+                s.setNom(nom);
+            } else {
+                throw new ExcepcioClub("ERROR AL RECONÈIXER EL TIPUS DE SOCI");
+            }
         } else {
-            SociJunior s = (SociJunior) soci;
-            s.setNom(nom);
+            throw new ExcepcioClub("SOCI A MODIFICAR NO TROBAT");
         }
     }
+
     public float calculaQuota(Soci soci, int num) throws ExcepcioClub {
         if (soci instanceof SociFederat) {
             SociFederat sf = (SociFederat) soci;
@@ -69,7 +84,7 @@ public class ClubUB {
     }
 
     public void modificarAsseguranca(String dni, String tipus) throws ExcepcioClub {
-        
+
         Soci soci;
         boolean trobat = false;
         for (int i = 0; i < this._llistaSocis.getSize(); i++) {
@@ -86,8 +101,8 @@ public class ClubUB {
                 }
             }
         }
-    
-        if(trobat == false){
+
+        if (trobat == false) {
             throw new ExcepcioClub("SOCI NO TROBAT");
         }
     }
