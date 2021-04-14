@@ -100,7 +100,7 @@ public class VistaClubUB {
                     break;
                 case M_Opcion_3_Eliminar:
                     System.out.println("Indica la posició en la llista del soci que vols eliminar (començant per 1): ");
-                    i = sc.nextInt() + 1;
+                    i = sc.nextInt() - 1;
                     try {
                         _club.eliminarSoci(i);
                     } catch (ExcepcioClub e) {
