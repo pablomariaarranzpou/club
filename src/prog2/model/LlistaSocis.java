@@ -65,4 +65,22 @@ public class LlistaSocis implements InSociList {
         return _llistaSocis.isEmpty();
     }
 
+    @Override
+    public String toString() {
+        String impr = "LLISTA: \n";
+        for (int i = 0; i < this._llistaSocis.size(); i++) {
+            if (_llistaSocis.get(i) instanceof SociFederat) {
+                SociFederat soci = (SociFederat) _llistaSocis.get(i);
+                impr += soci.toString() + " \n";
+            } else if (_llistaSocis.get(i) instanceof SociEstandard) {
+                SociEstandard soci = (SociEstandard) _llistaSocis.get(i);
+                impr += soci.toString() + "\n";
+            } else if(_llistaSocis.get(i) instanceof SociJunior){
+                SociJunior soci = (SociJunior) _llistaSocis.get(i);
+                impr += soci.toString() + "\n";
+            }
+        }
+        return impr;
+    }
+
 }

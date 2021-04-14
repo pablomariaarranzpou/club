@@ -13,13 +13,13 @@ import prog2.vista.ExcepcioClub;
  */
 public class SociEstandard extends Soci {
 
-    private Asseguranca asseguranca;
-    private float preu;
+    private Asseguranca _asseguranca;
+    private float _preu;
 
     public SociEstandard(String nom, String dni, String tipus_asse, float preu) throws ExcepcioClub {
         super(nom, dni);
-        comprova(tipus_asse);
-        this.asseguranca = new Asseguranca(tipus_asse, preu);
+        comprovaAsseguranca(tipus_asse);
+        _asseguranca = new Asseguranca(tipus_asse, preu);
     }
 
     @Override
@@ -29,33 +29,33 @@ public class SociEstandard extends Soci {
 
     @Override
     public float calculaPreuExcursio(float preuExcursioBase) throws ExcepcioClub {
-        return preuExcursioBase + preu;
+        return preuExcursioBase + _preu;
     }
 
     @Override
     public String toString() {
-        return "Nom: " + this.getNom() + ", DNI: " + this.getDNI() + ", " + asseguranca.toString();
-    }
-
-    public void comprova(String asse) throws ExcepcioClub {
-        if (!asse.equals("Completa") && !asse.equals("Completa")) {
-            throw new ExcepcioClub("TIPUS D´ASSEGURANÇA NO VÀLID");
-        }
+        return "Nom: " + this.getNom() + ", DNI: " + this.getDNI() + ", " + _asseguranca.toString();
     }
 
     public Asseguranca getAsseguranca() {
-        return asseguranca;
+        return _asseguranca;
     }
 
     public void setAsseguranca(Asseguranca asseguranca) {
-        this.asseguranca = asseguranca;
+        _asseguranca = asseguranca;
     }
 
     public float getPreu() {
-        return preu;
+        return _preu;
     }
 
     public void setPreu(float preu) {
-        this.preu = preu;
+        _preu = preu;
+    }
+
+    public void comprovaAsseguranca(String asse) throws ExcepcioClub {
+        if (!asse.equals("Completa") && !asse.equals("Completa")) {
+            throw new ExcepcioClub("El tipus d'assegurança no és correcte.");
+        }
     }
 }

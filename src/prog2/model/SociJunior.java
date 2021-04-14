@@ -9,8 +9,8 @@ package prog2.model;
  *
  * @author arran
  */
-public class SociJunior extends Soci{
-    
+public class SociJunior extends Soci {
+
     public SociJunior(String nom, String dni) {
         super(nom, dni);
     }
@@ -19,15 +19,15 @@ public class SociJunior extends Soci{
     public float calculaPreuExcursio(float baseExcursio) {
         return 0;
     }
-    
+
     @Override
-    public float calculaQuota(float quotaBase){        
+    public float calculaQuota(float quotaBase) {
         return quotaBase;
     }
-    
+
     @Override
-    public String toString(){ 
+    public String toString() {
         return "Nom: " + this.getNom() + ", DNI: " + this.getDNI();
     }
-    
+
 }

@@ -38,13 +38,13 @@ public class VistaClubUB {
         M_Opcion_9_Sortir
 
     };
+
     private static enum OpcionesMenuSecundari {
         M_Opcion_1_AfegirFederat,
         M_Opcion_2_AfegirEstandard,
         M_Opcion_3_AfegirJunior,
         M_Opcion_4_MenúAnterior
     };
-    
 
     // Descripcion de las opciones del menu principal
     private static final String[] descMenu = {
@@ -58,13 +58,13 @@ public class VistaClubUB {
         "Recuperar llista", //Carrega el contingut"
         "Sortir" // Fi del programa
     };
-    
+
     // Descripcio de les opcions del menú secundari
     private static final String[] descMenuSecundari = {
         "Afegir soci federat", // Afegeix al club un soci federat
-        "Afegir soci estàndard",  // Afegeix al club un soci estandard
-        "Afegir soci junior",  // Afegeix al club un soci junior
-        "Menú anterior"     // Torna al menu principal.
+        "Afegir soci estàndard", // Afegeix al club un soci estandard
+        "Afegir soci junior", // Afegeix al club un soci junior
+        "Menú anterior" // Torna al menu principal.
     };
 
     // Funcions que gestiona el menu principal de l'aplicació
@@ -86,7 +86,8 @@ public class VistaClubUB {
 
         // Lanzar el bucle principal de la aplicación
         do {
-            String tipus, dni;
+            String tipus, dni, nom;
+            int i, n;
             menu.mostrarMenu();
             opcionMenu = menu.getOpcio(sc);
 
@@ -95,16 +96,33 @@ public class VistaClubUB {
                     gestioMenuSecundari(sc);
                     break;
                 case M_Opcion_2_Mostar:
-
+                    System.out.println(this._club.imprimirLlistaSocis());
                     break;
                 case M_Opcion_3_Eliminar:
-
+                    System.out.println("Indica la posició en la llista del soci que vols eliminar: ");
+                    i = sc.nextInt();
+                    this._club.eliminarSoci(i);
                     break;
                 case M_Opcion_4_Factures:
+                    System.out.println("Dni del soci:");
+                    dni = sc.next();
+                    System.out.println("Introdueix el numero d'excursions del soci: ");
+                    n = sc.nextInt();
+                    try {
+                        this._club.comprovaNumeroExcursions(n);
+                        System.out.println("Total a pagar: " + this._club.calculaQuota(dni, n));
+                    } catch (ExcepcioClub e) {
+                        System.out.println(e.getMessage());
+                    }
 
                     break;
                 case M_Opcion_5_ModificarNom:
 
+                    System.out.println("Escriu el DNI del soci per modificar el nom: ");
+                    dni = sc.next();
+                    System.out.println("Escriu el nou nom");
+                    nom = sc.next();
+                    this._club.cambiarNom(dni, nom);
                     break;
                 case M_Opcion_6_ModificarAsseguranca:
                     System.out.println("Dni del soci:");
@@ -113,7 +131,7 @@ public class VistaClubUB {
                     tipus = sc.next();
                     this._club.modificarAsseguranca(dni, tipus);
                     break;
-                    
+
                 case M_Opcion_7_Guardar:
                     this._club.guardarDades("clubUB.dat");
                     break;
@@ -129,36 +147,37 @@ public class VistaClubUB {
 
         } while (opcionMenu != OpcionesMenu.M_Opcion_9_Sortir);
     }
+
     public void gestioMenuSecundari(Scanner sc) throws ExcepcioClub {
         // Creación del objeto que representa el menu. El primer argumento del contructor es el nombre del menu
         Menu<OpcionesMenuSecundari> menuGestio = new Menu<>("Menu Secundari", OpcionesMenuSecundari.values());
         //Menu<OpcionesMenu> menuEstacio = new Menu<>("Menu " + estacio.getNomEstacio(), OpcionesMenu.values());
-        
+
         // Assignar una descripción a cada una de las opciones
         //  - OPCIONAL - Por defecto enseña el nombre de la opción
         menuGestio.setDescripcions(descMenuSecundari);
-        
+
         // Variable (de tipo enumerado igual a las opciones del menu) que contiene la opcion escogida
         OpcionesMenuSecundari opcionMenu;
-        
+
         // Lançar el bucle principal de la aplicación
         do {
             menuGestio.mostrarMenu();
-            opcionMenu = menuGestio.getOpcio(sc);  
+            opcionMenu = menuGestio.getOpcio(sc);
 
-            switch(opcionMenu) {
+            switch (opcionMenu) {
                 case M_Opcion_1_AfegirFederat:
-                   
+
                     break;
                 case M_Opcion_2_AfegirEstandard:
-                    
+
                     break;
                 case M_Opcion_3_AfegirJunior:
-                    
-                    break;                               
+
+                    break;
             }
-            
-        } while(opcionMenu != OpcionesMenuSecundari.M_Opcion_4_MenúAnterior);
+
+        } while (opcionMenu != OpcionesMenuSecundari.M_Opcion_4_MenúAnterior);
     }
 
 }
