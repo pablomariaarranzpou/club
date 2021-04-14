@@ -53,6 +53,18 @@ public class ClubUB {
             s.setNom(nom);
         }
     }
+    public float CalculaQuota(Soci soci, int num) throws ExcepcioClub {
+        if (soci instanceof SociFederat) {
+            SociFederat sf = (SociFederat) soci;
+            return (sf.calculaQuota(QUOTA_MENSUAL) * (DESCOMPTE_QUOTA) + sf.getFederacio().getPreu()) + num * (sf.calculaPreuExcursio(PREU_PER_EXCURSIO) * DESCOMPTE_EXCURSIO);
+        } else if (soci instanceof SociEstandard) {
+            SociEstandard se = (SociEstandard) soci;
+            return (num * (se.calculaPreuExcursio(PREU_PER_EXCURSIO) + se.getAsseguranca().getPreu())) + se.calculaQuota(QUOTA_MENSUAL);
+        } else {
+            SociJunior sj = (SociJunior) soci;
+            return sj.calculaQuota(QUOTA_MENSUAL);
+        }
+    }
 
     public void ModificarAsseguranca(Soci soci, String tipus) throws ExcepcioClub {
         if (soci instanceof SociEstandard) {
@@ -76,18 +88,6 @@ public class ClubUB {
         }
     }
 
-    public float CalculaQuota(Soci soci, int num) throws ExcepcioClub {
-        if (soci instanceof SociFederat) {
-            SociFederat sf = (SociFederat) soci;
-            return (sf.calculaQuota(QUOTA_MENSUAL) * (DESCOMPTE_QUOTA) + sf.getFederacio().getPreu()) + num * (sf.calculaPreuExcursio(PREU_PER_EXCURSIO) * DESCOMPTE_EXCURSIO);
-        } else if (soci instanceof SociEstandard) {
-            SociEstandard se = (SociEstandard) soci;
-            return (num * (se.calculaPreuExcursio(PREU_PER_EXCURSIO) + se.getAsseguranca().getPreu())) + se.calculaQuota(QUOTA_MENSUAL);
-        } else {
-            SociJunior sj = (SociJunior) soci;
-            return sj.calculaQuota(QUOTA_MENSUAL);
-        }
-    }
 
     public void guardarDades(String cami) throws IOException {
         File fitxer = new File(cami);
@@ -98,7 +98,7 @@ public class ClubUB {
             oos = new ObjectOutputStream(fout);
             oos.writeObject(_llistaSocis);
         } catch (IOException e) {
-            throw e = new IOException("No s´ha pogut guardar el fitxer correctament");
+            throw e = new IOException("ERROR AL GUARDAR EL FITXER");
         }
         oos.close();
         fout.close();
@@ -114,7 +114,7 @@ public class ClubUB {
             ois = new ObjectInputStream(fin);
             _llistaSocis = (LlistaSocis) ois.readObject();
         } catch (IOException e) {
-            throw e = new IOException("No s´ha pogut carregar el fitxer correctament");
+            throw e = new IOException("ERROR AL RECUPERAR EL FITXER");
         }
         fin.close();
         ois.close();
