@@ -23,14 +23,13 @@ public class SociFederat extends Soci {
      *
      * @param nom
      * @param dni
-     * @param preu
-     * @param nom_federacio
+     * @param federacio
      * @throws ExcepcioClub
      */
-    public SociFederat(String nom, String dni, float preu, String nom_federacio) throws ExcepcioClub {
+    public SociFederat(String nom, String dni, Federacio federacio) throws ExcepcioClub {
         super(nom, dni);
-        comprova(preu);
-        _federacio = new Federacio(nom_federacio, preu);
+        comprova(federacio.getPreu());
+        _federacio = federacio;
     }
     /**
      * 

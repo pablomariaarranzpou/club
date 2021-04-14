@@ -19,19 +19,20 @@ public class SociEstandard extends Soci {
      * Constructor per defecte de la classe SociEstandard
      * @param nom
      * @param dni
-     * @param tipusAsseguranca
-     * @param preu
+     * @param asseguranca
      * @throws ExcepcioClub
      */
-    public SociEstandard(String nom, String dni, String tipusAsseguranca, float preu) throws ExcepcioClub {
+    public SociEstandard(String nom, String dni, Asseguranca asseguranca) throws ExcepcioClub {
         super(nom, dni);
-        comprova(tipusAsseguranca);
-        _asseguranca = new Asseguranca(tipusAsseguranca, preu);
+        comprova(asseguranca.getTipus());
+        _asseguranca = asseguranca;
     }
     
     /**
      * Métode abstracte implmentat a les classes filles(explicaciói a classe Soci)
+     * @param quotaBase
      * @return
+     * @throws prog2.vista.ExcepcioClub
      */
     @Override
     public float calculaQuota(float quotaBase) throws ExcepcioClub {
@@ -40,7 +41,9 @@ public class SociEstandard extends Soci {
     
     /**
      * Métode abstracte implmentat a les classes filles(explicaciói a classe Soci)
+     * @param preuExcursioBase
      * @return
+     * @throws prog2.vista.ExcepcioClub
      */
     @Override
     public float calculaPreuExcursio(float preuExcursioBase) throws ExcepcioClub {

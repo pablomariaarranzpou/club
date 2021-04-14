@@ -126,11 +126,12 @@ public class ClubUB {
      * @param nom
      * @param dni
      * @param preu
-     * @param nom_fede
+     * @param nomFederacio
      * @throws ExcepcioClub
      */
-    public void afegirSociFederat(String nom, String dni, float preu, String nom_fede) throws ExcepcioClub {
-        Soci soci = new SociFederat(nom, dni, preu, nom_fede);
+    public void afegirSociFederat(String nom, String dni, float preu, String nomFederacio) throws ExcepcioClub {
+        Federacio federacio = new Federacio(nomFederacio, preu);
+        Soci soci = new SociFederat(nom, dni, federacio);
         _llistaSocis.addSoci(soci);
     }
 
@@ -139,11 +140,12 @@ public class ClubUB {
      * @param nom
      * @param dni
      * @param tipus
-     * @param preu_asseg
+     * @param preu
      * @throws ExcepcioClub
      */
-    public void afegirSociEstandard(String nom, String dni, String tipus, float preu_asseg) throws ExcepcioClub {
-        Soci soci = new SociEstandard(nom, dni, tipus, preu_asseg);
+    public void afegirSociEstandard(String nom, String dni, String tipus, float preu) throws ExcepcioClub {
+        Asseguranca asseguranca = new Asseguranca(tipus, preu);
+        Soci soci = new SociEstandard(nom, dni, asseguranca);
         _llistaSocis.addSoci(soci);
     }
 
