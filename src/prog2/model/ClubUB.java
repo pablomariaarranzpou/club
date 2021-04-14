@@ -5,6 +5,14 @@
  */
 package prog2.model;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import prog2.vista.ExcepcioClub;
+
 /**
  *
  * @author arran
@@ -33,12 +41,85 @@ public class ClubUB {
         _nomClub = nomClub;
     }
 
-    public LlistaSocis getLlistaSocis() {
-        return _llistaSocis;
+    public void CambiarNom(Soci soci, String nom) {
+        if (soci instanceof SociFederat) {
+            SociFederat s = (SociFederat) soci;
+            s.setNom(nom);
+        } else if (soci instanceof SociEstandard) {
+            SociEstandard s = (SociEstandard) soci;
+            s.setNom(nom);
+        } else {
+            SociJunior s = (SociJunior) soci;
+            s.setNom(nom);
+        }
     }
 
-    public void setLlistaSocis(LlistaSocis llistaSocis) {
-        _llistaSocis = llistaSocis;
+    public void ModificarAsseguranca(Soci soci, String tipus) throws ExcepcioClub {
+        if (soci instanceof SociEstandard) {
+            SociEstandard se = (SociEstandard) soci;
+            try {
+                se.comprova(tipus);
+                se.getAsseguranca().setTipus(tipus);
+
+            } catch (ExcepcioClub e) {
+                throw e;
+            }
+        } else {
+            throw new ExcepcioClub("EL TIPUS DE SOCI ÉS INVÀLID");
+        }
+
+    }
+
+    public void ComprovaNumeroExcursions(int numero) throws ExcepcioClub {
+        if (numero > 31 || numero < 0) {
+            throw new ExcepcioClub("NUMERO DE EXCURSIONS INCORRECTE");
+        }
+    }
+
+    public float CalculaQuota(Soci soci, int num) throws ExcepcioClub {
+        if (soci instanceof SociFederat) {
+            SociFederat sf = (SociFederat) soci;
+            return (sf.calculaQuota(QUOTA_MENSUAL) * (DESCOMPTE_QUOTA) + sf.getFederacio().getPreu()) + num * (sf.calculaPreuExcursio(PREU_PER_EXCURSIO) * DESCOMPTE_EXCURSIO);
+        } else if (soci instanceof SociEstandard) {
+            SociEstandard se = (SociEstandard) soci;
+            return (num * (se.calculaPreuExcursio(PREU_PER_EXCURSIO) + se.getAsseguranca().getPreu())) + se.calculaQuota(QUOTA_MENSUAL);
+        } else {
+            SociJunior sj = (SociJunior) soci;
+            return sj.calculaQuota(QUOTA_MENSUAL);
+        }
+    }
+
+    public void guardarDades(String cami) throws IOException {
+        File fitxer = new File(cami);
+        FileOutputStream fout;
+        ObjectOutputStream oos;
+        try {
+            fout = new FileOutputStream(fitxer);
+            oos = new ObjectOutputStream(fout);
+            oos.writeObject(_llistaSocis);
+        } catch (IOException e) {
+            throw e = new IOException("No s´ha pogut guardar el fitxer correctament");
+        }
+        oos.close();
+        fout.close();
+
+    }
+
+    public LlistaSocis carregarDades(String camiOrigen) throws IOException, ClassNotFoundException {
+        File fitxer = new File(camiOrigen);
+        FileInputStream fin;
+        ObjectInputStream ois;
+        try {
+            fin = new FileInputStream(fitxer);
+            ois = new ObjectInputStream(fin);
+            _llistaSocis = (LlistaSocis) ois.readObject();
+        } catch (IOException e) {
+            throw e = new IOException("No s´ha pogut carregar el fitxer correctament");
+        }
+        fin.close();
+        ois.close();
+        return _llistaSocis;
+
     }
 
 }
