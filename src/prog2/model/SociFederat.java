@@ -32,12 +32,20 @@ public class SociFederat extends Soci {
         comprova(preu);
         _federacio = new Federacio(nom_federacio, preu);
     }
-
+    /**
+     * 
+     * @param baseExcursio
+     * @return 
+     */
     @Override
     public float calculaPreuExcursio(float baseExcursio) {
         return baseExcursio - (baseExcursio * DESCOMPTE_EXCURSIO);
     }
-
+    /**
+     * 
+     * @param quotaBase
+     * @return 
+     */
     @Override
     public float calculaQuota(float quotaBase) {
         return quotaBase - (quotaBase * DESCOMPTE_QUOTA);
@@ -53,15 +61,15 @@ public class SociFederat extends Soci {
     }
 
     /**
-     *
-     * @return
+     * Retorna la federació d´un soci en concret
+     * @return Federació
      */
     public Federacio getFederacio() {
         return _federacio;
     }
 
     /**
-     *
+     * Setter de la federacio d´un soci
      * @param federacio
      */
     public void setFederacio(Federacio federacio) {
@@ -69,7 +77,7 @@ public class SociFederat extends Soci {
     }
 
     /**
-     *
+     * Getter del tipus de federació d´un soci
      * @return
      */
     public String getTipusFederacio() {
@@ -77,13 +85,18 @@ public class SociFederat extends Soci {
     }
 
     /**
-     *
+     * Setter del tipus de federació d´un soci
      * @param tipus_federacio
      */
     public void setTipusFederacio(String tipus_federacio) {
         _tipusFederacio = tipus_federacio;
     }
-
+    
+    /**
+     * Conmprova que no fa més exucrsions diaries que dies te com a máxim un mes.
+     * @param preu
+     * @throws ExcepcioClub 
+     */
     private void comprova(float preu) throws ExcepcioClub {
         if (preu < 100) {
             throw new ExcepcioClub("PREU DE FEDERACIÓ INVÀLID");

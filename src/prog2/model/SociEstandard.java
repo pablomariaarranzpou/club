@@ -48,7 +48,7 @@ public class SociEstandard extends Soci {
     }
 
     /**
-     *
+     * Retorna la informacio del soci a una string
      * @return
      */
     @Override
@@ -57,7 +57,7 @@ public class SociEstandard extends Soci {
     }
 
     /**
-     *
+     * Retorna l´assegurança del soci
      * @return
      */
     public Asseguranca getAsseguranca() {
@@ -65,7 +65,7 @@ public class SociEstandard extends Soci {
     }
 
     /**
-     *
+     * Canvia l´assegurança del soci
      * @param asseguranca
      */
     public void setAsseguranca(Asseguranca asseguranca) {
@@ -73,7 +73,7 @@ public class SociEstandard extends Soci {
     }
     
     /**
-     *
+     * Modifica el tipus d´assegurança
      * @param tipusAsseguranca
      * @throws ExcepcioClub
      */
@@ -81,7 +81,12 @@ public class SociEstandard extends Soci {
         comprova(tipusAsseguranca);
         _asseguranca.setTipus(tipusAsseguranca);
     }
-
+    
+    /**
+     * Comprova si el tipus de l´assegurança es vàlid
+     * @param tipusAsseguranca
+     * @throws ExcepcioClub
+     */
     private void comprova(String asse) throws ExcepcioClub {
         if (!asse.equals("Basica") && !asse.equals("Completa")) {
             throw new ExcepcioClub("El tipus d'assegurança no és correcte.");

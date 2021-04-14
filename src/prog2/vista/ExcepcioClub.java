@@ -12,7 +12,7 @@ package prog2.vista;
 public class ExcepcioClub extends Exception {
 
     /**
-     *
+     * Exepció prinicipal quer farem servir a tot el programa,
      * @param msj
      */
     public ExcepcioClub(String msj) {
