@@ -5,6 +5,7 @@
  */
 package prog2.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import prog2.vista.ExcepcioClub;
 
@@ -12,7 +13,7 @@ import prog2.vista.ExcepcioClub;
  *
  * @author arran
  */
-public class LlistaSocis implements InSociList {
+public class LlistaSocis implements InSociList, Serializable {
 
     private ArrayList<Soci> _llistaSocis;
 
@@ -68,6 +69,9 @@ public class LlistaSocis implements InSociList {
     @Override
     public String toString() {
         String impr = "LLISTA: \n";
+        if(this._llistaSocis.isEmpty()){
+            return impr + "LLISTA BUIDA.";
+        }
         for (int i = 0; i < this._llistaSocis.size(); i++) {
             if (_llistaSocis.get(i) instanceof SociFederat) {
                 SociFederat soci = (SociFederat) _llistaSocis.get(i);
