@@ -5,10 +5,52 @@
  */
 package prog2.model;
 
+import prog2.vista.ExcepcioClub;
+
 /**
  *
  * @author arran
  */
-public class Soci {
+public class Soci implements InSoci {
+
+    private String nom;
+    private String dni;
+
+    public Soci(String nom, String dni) {
+        this.nom = nom;
+        this.dni = dni;
+    }
+
+    @Override
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    @Override
+    public String getNom() {
+        return nom;
+    }
+
+    @Override
+    public void setDNI(String dni) {
+        this.dni = dni;
+    }
+
+    @Override
+    public String getDNI() {
+        return dni;
+    }
+
+    @Override
+    public float calculaQuota(float quotaBase) throws ExcepcioClub {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public float calculaPreuExcursio(float preuExcursioBase) throws ExcepcioClub {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
     
 }
