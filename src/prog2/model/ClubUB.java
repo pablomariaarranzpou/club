@@ -11,4 +11,16 @@ package prog2.model;
  */
 public class ClubUB {
     
+    private String nomClub;
+    
+    public ClubUB(String nom) {
+        this.nomClub = nom;
+    }
+
+    public String getNomClub() {
+        return nomClub;
+    }
+    
+  
+    
 }
