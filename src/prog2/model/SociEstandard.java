@@ -14,12 +14,11 @@ import prog2.vista.ExcepcioClub;
 public class SociEstandard extends Soci {
 
     private Asseguranca _asseguranca;
-    private float _preu;
 
-    public SociEstandard(String nom, String dni, String tipus_asse, float preu) throws ExcepcioClub {
+    public SociEstandard(String nom, String dni, String tipusAsseguranca, float preu) throws ExcepcioClub {
         super(nom, dni);
-        comprovaAsseguranca(tipus_asse);
-        _asseguranca = new Asseguranca(tipus_asse, preu);
+        comprova(tipusAsseguranca);
+        _asseguranca = new Asseguranca(tipusAsseguranca, preu);
     }
 
     @Override
@@ -29,7 +28,7 @@ public class SociEstandard extends Soci {
 
     @Override
     public float calculaPreuExcursio(float preuExcursioBase) throws ExcepcioClub {
-        return preuExcursioBase + _preu;
+        return preuExcursioBase + _asseguranca.getPreu();
     }
 
     @Override
@@ -44,17 +43,14 @@ public class SociEstandard extends Soci {
     public void setAsseguranca(Asseguranca asseguranca) {
         _asseguranca = asseguranca;
     }
-
-    public float getPreu() {
-        return _preu;
+    
+    public void modificarAsseguranca(String tipusAsseguranca) throws ExcepcioClub {
+        comprova(tipusAsseguranca);
+        _asseguranca.setTipus(tipusAsseguranca);
     }
 
-    public void setPreu(float preu) {
-        _preu = preu;
-    }
-
-    public void comprovaAsseguranca(String asse) throws ExcepcioClub {
-        if (!asse.equals("Completa") && !asse.equals("Completa")) {
+    private void comprova(String asse) throws ExcepcioClub {
+        if (!asse.equals("Bàsica") && !asse.equals("Completa")) {
             throw new ExcepcioClub("El tipus d'assegurança no és correcte.");
         }
     }

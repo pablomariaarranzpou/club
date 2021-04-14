@@ -7,6 +7,9 @@ package prog2.model;
 
 import prog2.vista.ExcepcioClub;
 
+import static prog2.model.ClubUB.DESCOMPTE_QUOTA;
+import static prog2.model.ClubUB.DESCOMPTE_EXCURSIO;
+
 /**
  *
  * @author arran
@@ -14,23 +17,22 @@ import prog2.vista.ExcepcioClub;
 public class SociFederat extends Soci {
 
     private Federacio _federacio;
-    private float _preu;
     private String _tipusFederacio;
 
     public SociFederat(String nom, String dni, float preu, String nom_federacio) throws ExcepcioClub {
         super(nom, dni);
-        comprovaPreu(preu);
+        comprova(preu);
         _federacio = new Federacio(nom_federacio, preu);
     }
 
     @Override
     public float calculaPreuExcursio(float baseExcursio) {
-        return baseExcursio;
+        return baseExcursio - (baseExcursio * DESCOMPTE_EXCURSIO);
     }
 
     @Override
     public float calculaQuota(float quotaBase) {
-        return quotaBase;
+        return quotaBase - (quotaBase * DESCOMPTE_QUOTA);
     }
 
     @Override
@@ -46,14 +48,6 @@ public class SociFederat extends Soci {
         _federacio = federacio;
     }
 
-    public float getPreu() {
-        return _preu;
-    }
-
-    public void setPreu(float preu) {
-        _preu = preu;
-    }
-
     public String getTipusFederacio() {
         return _tipusFederacio;
     }
@@ -62,7 +56,7 @@ public class SociFederat extends Soci {
         _tipusFederacio = tipus_federacio;
     }
 
-    public void comprovaPreu(float preu) throws ExcepcioClub {
+    private void comprova(float preu) throws ExcepcioClub {
         if (preu < 100) {
             throw new ExcepcioClub("PREU DE FEDERACIÓ INVÀLID");
         }

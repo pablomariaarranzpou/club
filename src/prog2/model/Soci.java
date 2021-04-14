@@ -13,8 +13,8 @@ import prog2.vista.ExcepcioClub;
  */
 public abstract class Soci implements InSoci {
 
-    private String _nom;
-    private String _dni;
+    protected String _nom;
+    protected String _dni;
 
     public Soci(String nom, String dni) {
         _nom = nom;
@@ -49,5 +49,11 @@ public abstract class Soci implements InSoci {
 
     @Override
     public abstract String toString();
+
+    @Override
+    public boolean equals(Object obj) {
+        Soci soci = (Soci) obj;
+        return _dni.equals(soci.getDNI());
+    }
 
 }

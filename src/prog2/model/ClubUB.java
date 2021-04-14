@@ -41,92 +41,31 @@ public class ClubUB {
         _nomClub = nomClub;
     }
 
-    public void cambiarNom(String dni, String nom) throws ExcepcioClub {
-        Soci soci = null;
-        boolean trobat = false;
-        for (int i = 0; i < this._llistaSocis.getSize(); i++) {
-            if (this._llistaSocis.getAt(i).getDNI().equals(dni)){
-                soci = this._llistaSocis.getAt(i);
-                trobat = true;
-            }
-        }
-
-        if (trobat == true) {
-            if (soci instanceof SociFederat) {
-                SociFederat s = (SociFederat) soci;
-                System.out.println("Nom cambiat de "+ s.getNom() + " a "+ nom);
-                s.setNom(nom);
-                
-            } else if (soci instanceof SociEstandard) {
-                SociEstandard s = (SociEstandard) soci;
-                System.out.println("Nom cambiat de "+ s.getNom() + " a "+ nom);
-                s.setNom(nom);
-            } else if (soci instanceof SociJunior) {
-                SociJunior s = (SociJunior) soci;
-                System.out.println("Nom cambiat de "+ s.getNom() + " a "+ nom);
-                s.setNom(nom);
-            } else {
-                throw new ExcepcioClub("ERROR AL RECONÈIXER EL TIPUS DE SOCI");
-            }
-        } else {
-            throw new ExcepcioClub("SOCI A MODIFICAR NO TROBAT");
-        }
+    public void canviarNomSoci(String dni, String nouNom) throws ExcepcioClub {
+        Soci soci = _llistaSocis.getSoci(dni);
+        soci.setNom(nouNom);
     }
 
-    public float calculaQuota(String dni, int num) throws ExcepcioClub {
-
-        Soci soci = null;
-        boolean trobat = false;
-        for (int i = 0; i < this._llistaSocis.getSize(); i++) {
-            if (this._llistaSocis.getAt(i).getDNI().equals(dni)) {
-                soci = this._llistaSocis.getAt(i);
-                trobat = true;
-            }
-        }
-        if (trobat == true) {
-            if (soci instanceof SociFederat) {
-                SociFederat sf = (SociFederat) soci;
-                return (sf.calculaQuota(QUOTA_MENSUAL) * (DESCOMPTE_QUOTA) + sf.getFederacio().getPreu()) + num * (sf.calculaPreuExcursio(PREU_PER_EXCURSIO) * DESCOMPTE_EXCURSIO);
-            } else if (soci instanceof SociEstandard) {
-                SociEstandard se = (SociEstandard) soci;
-                return se.calculaQuota(QUOTA_MENSUAL) + (num * (se.calculaPreuExcursio(PREU_PER_EXCURSIO) + se.getAsseguranca().getPreu()));
-            } else if (soci instanceof SociJunior) {
-                SociJunior sj = (SociJunior) soci;
-                return sj.calculaQuota(QUOTA_MENSUAL);
-            } else {
-                throw new ExcepcioClub("ERROR AL RECONÈIXER EL TIPUS DE SOCI");
-            }
-        } else {
-            throw new ExcepcioClub("SCOCI NO TROBAT");
-        }
-
+    public float calculaFactura(String dni, int num) throws ExcepcioClub {
+        Soci soci = _llistaSocis.getSoci(dni);
+        return soci.calculaQuota(QUOTA_MENSUAL) + (num * soci.calculaPreuExcursio(PREU_PER_EXCURSIO));
     }
 
     public void modificarAsseguranca(String dni, String tipus) throws ExcepcioClub {
-        Soci soci;
-        boolean trobat = false;
-        for (int i = 0; i < this._llistaSocis.getSize(); i++) {
-            if (this._llistaSocis.getAt(i).getDNI().equals(dni)) {
-                trobat = true;
-                soci = this._llistaSocis.getAt(i);
-                if (soci instanceof SociEstandard) {
-                    SociEstandard se = (SociEstandard) soci;
-                    se.comprovaAsseguranca(tipus);
-                    se.getAsseguranca().setTipus(tipus);
-                } else {
-                    throw new ExcepcioClub("EL TIPUS DE SOCI ÉS INVÀLID");
-                }
-            }
+        Soci soci = _llistaSocis.getSoci(dni);
+
+        if (soci instanceof SociEstandard) {
+            SociEstandard se = (SociEstandard) soci;
+            se.modificarAsseguranca(tipus);
+        } else {
+            throw new ExcepcioClub("El tipus de soci és invàlid.");
         }
 
-        if (trobat == false) {
-            throw new ExcepcioClub("SOCI NO TROBAT");
-        }
     }
 
     public void comprovaNumeroExcursions(int n) throws ExcepcioClub {
         if (n < 0 || n > 31) {
-            throw new ExcepcioClub("NUMERO DE EXCURSIONS INCORRECTE");
+            throw new ExcepcioClub("Número d'excursions incorrecte.");
         }
     }
 
@@ -163,17 +102,12 @@ public class ClubUB {
 
     }
 
-    public String imprimirLlistaSocis(){
-        return this._llistaSocis.toString();
+    public String imprimirLlistaSocis() {
+        return _llistaSocis.toString();
     }
-    
-    
-    public void eliminarSoci(int posicio) throws ExcepcioClub{
-        Soci soci = this._llistaSocis.getAt(posicio);
-        this._llistaSocis.removeSoci(soci);
+
+    public void eliminarSoci(int posicio) throws ExcepcioClub {
+        Soci soci = _llistaSocis.getAt(posicio);
+        _llistaSocis.removeSoci(soci);
     }
 }
-
-    
-
-

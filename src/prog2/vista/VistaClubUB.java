@@ -110,7 +110,7 @@ public class VistaClubUB {
                     n = sc.nextInt();
                     try {
                         this._club.comprovaNumeroExcursions(n);
-                        System.out.println("Total a pagar: " + this._club.calculaQuota(dni, n));
+                        System.out.println("Total a pagar: " + this._club.calculaFactura(dni, n));
                     } catch (ExcepcioClub e) {
                         System.out.println(e.getMessage());
                     }
@@ -122,7 +122,7 @@ public class VistaClubUB {
                     dni = sc.next();
                     System.out.println("Escriu el nou nom");
                     nom = sc.next();
-                    this._club.cambiarNom(dni, nom);
+                    this._club.canviarNomSoci(dni, nom);
                     break;
                 case M_Opcion_6_ModificarAsseguranca:
                     System.out.println("Dni del soci:");

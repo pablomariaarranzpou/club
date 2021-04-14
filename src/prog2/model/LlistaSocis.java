@@ -14,10 +14,17 @@ import prog2.vista.ExcepcioClub;
  */
 public class LlistaSocis implements InSociList {
 
-    private ArrayList<Soci> _llistaSocis;
+    private final ArrayList<Soci> _llistaSocis;
+    private int _capacitatMax = 100;
 
     public LlistaSocis() {
-        _llistaSocis = new ArrayList<>(100);
+        _capacitatMax = 100;
+        _llistaSocis = new ArrayList<>(_capacitatMax);
+    }
+
+    public LlistaSocis(int capacitatMax) {
+        _capacitatMax = capacitatMax;
+        _llistaSocis = new ArrayList<>(_capacitatMax);
     }
 
     @Override
@@ -27,11 +34,17 @@ public class LlistaSocis implements InSociList {
 
     @Override
     public void addSoci(Soci soci) throws ExcepcioClub {
-        _llistaSocis.add(soci);
+        if (isFull()) {
+            throw new ExcepcioClub("No es poden afegir més socis.");
+        } else if (contains(soci)) {
+            throw new ExcepcioClub("Aquest soci ja existeix.");
+        } else {
+            _llistaSocis.add(soci);
+        }
     }
 
     @Override
-    public void removeSoci(Soci soci) throws ExcepcioClub {
+    public void removeSoci(Soci soci) {
         _llistaSocis.remove(soci);
     }
 
@@ -47,7 +60,7 @@ public class LlistaSocis implements InSociList {
                 return _llistaSocis.get(i);
             }
         }
-        return null;
+        throw new ExcepcioClub("Soci no trobat.");
     }
 
     @Override
@@ -57,7 +70,7 @@ public class LlistaSocis implements InSociList {
 
     @Override
     public boolean isFull() throws ExcepcioClub {
-        return _llistaSocis.size() == 100;
+        return _llistaSocis.size() >= _capacitatMax;
     }
 
     @Override
@@ -68,19 +81,18 @@ public class LlistaSocis implements InSociList {
     @Override
     public String toString() {
         String impr = "LLISTA: \n";
-        for (int i = 0; i < this._llistaSocis.size(); i++) {
-            if (_llistaSocis.get(i) instanceof SociFederat) {
-                SociFederat soci = (SociFederat) _llistaSocis.get(i);
-                impr += soci.toString() + " \n";
-            } else if (_llistaSocis.get(i) instanceof SociEstandard) {
-                SociEstandard soci = (SociEstandard) _llistaSocis.get(i);
-                impr += soci.toString() + "\n";
-            } else if(_llistaSocis.get(i) instanceof SociJunior){
-                SociJunior soci = (SociJunior) _llistaSocis.get(i);
-                impr += soci.toString() + "\n";
-            }
+        for (Soci soci : _llistaSocis) {
+            impr += soci.toString() + " \n";
         }
         return impr;
     }
 
+    private boolean contains(Soci soci) {
+        for (Soci sociLlista : _llistaSocis) {
+            if (soci.equals(sociLlista)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
