@@ -41,7 +41,7 @@ public class ClubUB {
         _nomClub = nomClub;
     }
 
-    public void CambiarNom(Soci soci, String nom) {
+    public void cambiarNom(Soci soci, String nom) {
         if (soci instanceof SociFederat) {
             SociFederat s = (SociFederat) soci;
             s.setNom(nom);
@@ -53,7 +53,7 @@ public class ClubUB {
             s.setNom(nom);
         }
     }
-    public float CalculaQuota(Soci soci, int num) throws ExcepcioClub {
+    public float calculaQuota(Soci soci, int num) throws ExcepcioClub {
         if (soci instanceof SociFederat) {
             SociFederat sf = (SociFederat) soci;
             return (sf.calculaQuota(QUOTA_MENSUAL) * (DESCOMPTE_QUOTA) + sf.getFederacio().getPreu()) + num * (sf.calculaPreuExcursio(PREU_PER_EXCURSIO) * DESCOMPTE_EXCURSIO);
@@ -66,7 +66,7 @@ public class ClubUB {
         }
     }
 
-    public void ModificarAsseguranca(Soci soci, String tipus) throws ExcepcioClub {
+    public void modificarAsseguranca(Soci soci, String tipus) throws ExcepcioClub {
         if (soci instanceof SociEstandard) {
             SociEstandard se = (SociEstandard) soci;
             try {
@@ -82,7 +82,7 @@ public class ClubUB {
 
     }
 
-    public void ComprovaNumeroExcursions(int numero) throws ExcepcioClub {
+    public void comprovaNumeroExcursions(int numero) throws ExcepcioClub {
         if (numero > 31 || numero < 0) {
             throw new ExcepcioClub("NUMERO DE EXCURSIONS INCORRECTE");
         }
