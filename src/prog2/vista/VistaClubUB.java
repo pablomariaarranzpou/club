@@ -17,10 +17,17 @@ public class VistaClubUB {
 
     private ClubUB _club;
 
+    /**
+     * Inicialitza el club
+     * @param nomClub
+     */
     public VistaClubUB(String nomClub) {
         _club = new ClubUB(nomClub);
     }
 
+    /**
+     * Inicilitzem el menú
+     */
     public void gestioClubUB() {
         Scanner sc = new Scanner(System.in);
         gestioMenu(sc);
@@ -72,6 +79,11 @@ public class VistaClubUB {
     //   1. Crear el objeto que representa (contiene) el menu
     //   2. Asignar las descripciones del menu
     //   3. Bucle donde se trata la opcion seleccionada por el usuario
+
+    /**
+     *
+     * @param sc
+     */
     public void gestioMenu(Scanner sc) {
         // Creación del objeto que representa el menu. El primer argumento del contructor es el nombre del menu
         Menu<OpcionesMenu> menu = new Menu<>("Menu " + _club.getNomClub(), OpcionesMenu.values());
@@ -165,6 +177,10 @@ public class VistaClubUB {
         } while (opcionMenu != OpcionesMenu.M_Opcion_9_Sortir);
     }
 
+    /**
+     * Gestiona el menu secunadri de la opcio de donar d´alta
+     * @param sc
+     */
     public void gestioMenuSecundari(Scanner sc) {
         // Creación del objeto que representa el menu. El primer argumento del contructor es el nombre del menu
         Menu<OpcionesMenuSecundari> menuGestio = new Menu<>("Menu Secundari", OpcionesMenuSecundari.values());

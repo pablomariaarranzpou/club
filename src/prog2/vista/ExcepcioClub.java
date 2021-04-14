@@ -11,6 +11,10 @@ package prog2.vista;
  */
 public class ExcepcioClub extends Exception {
 
+    /**
+     *
+     * @param msj
+     */
     public ExcepcioClub(String msj) {
         super(msj);
     }

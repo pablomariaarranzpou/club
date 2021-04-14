@@ -13,6 +13,13 @@ import java.io.IOException;
  */
 public class IniciadorClubUB {
 
+    /**
+     * Main que inicilitza tot el programa.
+     * @param args
+     * @throws ExcepcioClub
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public static void main(String[] args) throws ExcepcioClub, IOException, ClassNotFoundException {
         // Atributs necessaris pel Club
         String nomClub = "ClubUB";

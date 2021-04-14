@@ -11,6 +11,11 @@ package prog2.model;
  */
 public class SociJunior extends Soci {
 
+    /**
+     *
+     * @param nom
+     * @param dni
+     */
     public SociJunior(String nom, String dni) {
         super(nom, dni);
     }
@@ -25,6 +30,10 @@ public class SociJunior extends Soci {
         return quotaBase;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return "Nom: " + this.getNom() + ", DNI: " + this.getDNI();

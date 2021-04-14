@@ -19,6 +19,14 @@ public class SociFederat extends Soci {
     private Federacio _federacio;
     private String _tipusFederacio;
 
+    /**
+     *
+     * @param nom
+     * @param dni
+     * @param preu
+     * @param nom_federacio
+     * @throws ExcepcioClub
+     */
     public SociFederat(String nom, String dni, float preu, String nom_federacio) throws ExcepcioClub {
         super(nom, dni);
         comprova(preu);
@@ -35,23 +43,43 @@ public class SociFederat extends Soci {
         return quotaBase - (quotaBase * DESCOMPTE_QUOTA);
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return "Nom: " + this.getNom() + ", DNI: " + this.getDNI() + ", " + _federacio.toString();
     }
 
+    /**
+     *
+     * @return
+     */
     public Federacio getFederacio() {
         return _federacio;
     }
 
+    /**
+     *
+     * @param federacio
+     */
     public void setFederacio(Federacio federacio) {
         _federacio = federacio;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getTipusFederacio() {
         return _tipusFederacio;
     }
 
+    /**
+     *
+     * @param tipus_federacio
+     */
     public void setTipusFederacio(String tipus_federacio) {
         _tipusFederacio = tipus_federacio;
     }

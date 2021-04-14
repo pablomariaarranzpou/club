@@ -10,6 +10,7 @@ import java.util.Scanner;
 /**
  * Implements a text menu from a list of options.
  * @author Xavi Baró
+ * @param <TEnum>
  */
 public class Menu<TEnum> {
      /**

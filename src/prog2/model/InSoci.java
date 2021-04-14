@@ -13,9 +13,28 @@ import prog2.vista.ExcepcioClub;
  */
 public interface InSoci {
     
+    /**
+     *
+     * @param nom
+     */
     public void setNom(String nom);
+
+    /**
+     *
+     * @return
+     */
     public String getNom();
+
+    /**
+     *
+     * @param dni
+     */
     public void setDNI(String dni);
+
+    /**
+     *
+     * @return
+     */
     public String getDNI();
     
     /**

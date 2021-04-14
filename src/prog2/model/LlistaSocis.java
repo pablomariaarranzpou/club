@@ -18,11 +18,18 @@ public class LlistaSocis implements InSociList, Serializable {
     private final ArrayList<Soci> _llistaSocis;
     private int _capacitatMax = 100;
 
+    /**
+     * Métode constructor de llista socis
+     */
     public LlistaSocis() {
         _capacitatMax = 100;
         _llistaSocis = new ArrayList<>(_capacitatMax);
     }
 
+    /**
+     * Llista constructor amb máxim.
+     * @param capacitatMax
+     */
     public LlistaSocis(int capacitatMax) {
         _capacitatMax = capacitatMax;
         _llistaSocis = new ArrayList<>(_capacitatMax);
@@ -82,6 +89,10 @@ public class LlistaSocis implements InSociList, Serializable {
         return _llistaSocis.isEmpty();
     }
 
+    /**
+     * Retorna la llista a una string
+     * @return string
+     */
     @Override
     public String toString() {
         String impr = "LLISTA: \n";
@@ -90,7 +101,10 @@ public class LlistaSocis implements InSociList, Serializable {
         }
         return impr;
     }
-
+    /**
+     * Indica amb un boolea si existeix o no un soci a la llista
+     * @return boolean
+     */
     private boolean contains(Soci soci) {
         for (Soci sociLlista : _llistaSocis) {
             if (soci.equals(sociLlista)) {
