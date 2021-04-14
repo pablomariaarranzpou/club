@@ -13,23 +13,33 @@ import prog2.vista.ExcepcioClub;
  */
 public class SociEstandard extends Soci{
     
-    public SociEstandard(String nom, String dni) {
+    private Asseguranca asseguranca; 
+    private float preu;
+    
+    public SociEstandard(String nom, String dni, String tipus_asse, float preu) throws ExcepcioClub {
         super(nom, dni);
+        comprova(tipus_asse);
+        this.asseguranca = new Asseguranca(tipus_asse, preu);
     }
 
     @Override
     public float calculaQuota(float quotaBase) throws ExcepcioClub {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return quotaBase;
     }
 
     @Override
     public float calculaPreuExcursio(float preuExcursioBase) throws ExcepcioClub {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return preuExcursioBase + preu;
     }
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "Soci Estàndar: Nom: "+ this.getNom() + ", DNI: "+ this.getDNI() +", "+ asseguranca.toString();
     }
     
+    public void comprova(String asse) throws ExcepcioClub{
+        if(!asse.equals("Completa") && !asse.equals("Completa")){
+            throw new ExcepcioClub("TIPUS D´ASSEGURANÇA NO VÀLID");
+        }   
+    }
 }
