@@ -70,7 +70,7 @@ public class ClubUB {
         if (soci instanceof SociEstandard) {
             SociEstandard se = (SociEstandard) soci;
             try {
-                se.comprova(tipus);
+                se.comprovaAsseguranca(tipus);
                 se.getAsseguranca().setTipus(tipus);
 
             } catch (ExcepcioClub e) {
