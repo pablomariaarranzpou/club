@@ -13,32 +13,32 @@ import prog2.vista.ExcepcioClub;
  */
 public abstract class Soci implements InSoci {
 
-    private String nom;
-    private String dni;
+    private String _nom;
+    private String _dni;
 
     public Soci(String nom, String dni) {
-        this.nom = nom;
-        this.dni = dni;
+        _nom = nom;
+        _dni = dni;
     }
 
     @Override
     public void setNom(String nom) {
-        this.nom = nom;
+        _nom = nom;
     }
 
     @Override
     public String getNom() {
-        return nom;
+        return _nom;
     }
 
     @Override
     public void setDNI(String dni) {
-        this.dni = dni;
+        _dni = dni;
     }
 
     @Override
     public String getDNI() {
-        return dni;
+        return _dni;
     }
 
     @Override
@@ -50,6 +50,4 @@ public abstract class Soci implements InSoci {
     @Override
     public abstract String toString();
 
-
-    
 }

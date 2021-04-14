@@ -10,37 +10,34 @@ package prog2.model;
  * @author arran
  */
 public class Federacio {
-    
-    private String nom;
-    private float preu;
+
+    private String _nom;
+    private float _preu;
 
     public Federacio(String nom, float preu) {
-        this.nom = nom;
-        this.preu = preu;
+        _nom = nom;
+        _preu = preu;
     }
 
     public String getNom() {
-        return nom;
+        return _nom;
     }
 
     public void setNom(String nom) {
-        this.nom = nom;
+        _nom = nom;
     }
 
     public float getPreu() {
-        return preu;
+        return _preu;
     }
 
     public void setPreu(float preu) {
-        this.preu = preu;
+        _preu = preu;
     }
 
     @Override
     public String toString() {
-        return "Federació: Nom= "+ nom +", Preu= "+preu;
+        return "Federació: Nom= " + _nom + ", Preu= " + _preu;
     }
-    
-    
-    
-    
+
 }
