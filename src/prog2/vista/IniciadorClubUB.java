@@ -5,13 +5,15 @@
  */
 package prog2.vista;
 
+import java.io.IOException;
+
 /**
  *
  * @author arran
  */
 public class IniciadorClubUB {
 
-    public static void main(String[] args) throws ExcepcioClub {
+    public static void main(String[] args) throws ExcepcioClub, IOException, ClassNotFoundException {
         // Creem l'objecte de la vista amb els atributs necessàris
         VistaClubUB vistaClub = new VistaClubUB();
 
