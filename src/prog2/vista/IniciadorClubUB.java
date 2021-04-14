@@ -11,11 +11,12 @@ package prog2.vista;
  */
 public class IniciadorClubUB {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
+        // Creem l'objecte de la vista amb els atributs necessàris
+        VistaClubUB vistaClub = new VistaClubUB();
+
+        // Inicialitzem l'execució de la vista
+        vistaClub.gestioClubUB();
     }
-    
+
 }

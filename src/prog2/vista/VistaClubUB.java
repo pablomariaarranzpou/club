@@ -20,6 +20,11 @@ public class VistaClubUB {
         _club = new ClubUB("Club_1");
     }
 
+    public void gestioClubUB() {
+        Scanner sc = new Scanner(System.in);
+        gestioMenu(sc);
+    }
+
     private static enum OpcionesMenu {
         M_Opcion_1_Alta,
         M_Opcion_2_Mostar,
@@ -46,7 +51,7 @@ public class VistaClubUB {
         "Recuperar llista: Carrega el contingut", // Opcion 8
     };
 
-    // Funcion que gestiona el menu principal de la aplicacion
+    // Funcions que gestiona el menu principal de l'aplicació
     // Tiene 3 pasos principales:
     //   1. Crear el objeto que representa (contiene) el menu
     //   2. Asignar las descripciones del menu
