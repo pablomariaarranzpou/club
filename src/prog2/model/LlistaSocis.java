@@ -51,6 +51,9 @@ public class LlistaSocis implements InSociList, Serializable {
 
     @Override
     public Soci getAt(int position) throws ExcepcioClub {
+        if(position > _llistaSocis.size()){
+            throw new ExcepcioClub("No existeix un soci en aquesta posició.");
+        }
         return _llistaSocis.get(position);
     }
 

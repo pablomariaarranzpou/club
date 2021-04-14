@@ -17,11 +17,11 @@ public class VistaClubUB {
 
     private ClubUB _club;
 
-    public VistaClubUB() {
-        _club = new ClubUB("Club UB");
+    public VistaClubUB(String nomClub) {
+        _club = new ClubUB(nomClub);
     }
 
-    public void gestioClubUB() throws ExcepcioClub, IOException, ClassNotFoundException {
+    public void gestioClubUB() {
         Scanner sc = new Scanner(System.in);
         gestioMenu(sc);
     }
@@ -72,7 +72,7 @@ public class VistaClubUB {
     //   1. Crear el objeto que representa (contiene) el menu
     //   2. Asignar las descripciones del menu
     //   3. Bucle donde se trata la opcion seleccionada por el usuario
-    public void gestioMenu(Scanner sc) throws ExcepcioClub, IOException, ClassNotFoundException {
+    public void gestioMenu(Scanner sc) {
         // Creación del objeto que representa el menu. El primer argumento del contructor es el nombre del menu
         Menu<OpcionesMenu> menu = new Menu<>("Menu " + _club.getNomClub(), OpcionesMenu.values());
         //Menu<OpcionesMenu> menuEstacio = new Menu<>("Menu " + estacio.getNomEstacio(), OpcionesMenu.values());
@@ -96,12 +96,16 @@ public class VistaClubUB {
                     gestioMenuSecundari(sc);
                     break;
                 case M_Opcion_2_Mostar:
-                    System.out.println(this._club.imprimirLlistaSocis());
+                    System.out.println(_club.llistaSocisToString());
                     break;
                 case M_Opcion_3_Eliminar:
-                    System.out.println("Indica la posició en la llista del soci que vols eliminar: ");
-                    i = sc.nextInt();
-                    this._club.eliminarSoci(i);
+                    System.out.println("Indica la posició en la llista del soci que vols eliminar (començant per 1): ");
+                    i = sc.nextInt() + 1;
+                    try {
+                        _club.eliminarSoci(i);
+                    } catch (ExcepcioClub e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case M_Opcion_4_Factures:
                     System.out.println("Dni del soci:");
@@ -109,34 +113,47 @@ public class VistaClubUB {
                     System.out.println("Introdueix el numero d'excursions del soci: ");
                     n = sc.nextInt();
                     try {
-                        this._club.comprovaNumeroExcursions(n);
-                        System.out.println("Total a pagar: " + this._club.calculaFactura(dni, n));
+                        _club.comprovaNumeroExcursions(n);
+                        System.out.println("Total a pagar: " + _club.calculaFactura(dni, n));
                     } catch (ExcepcioClub e) {
                         System.out.println(e.getMessage());
                     }
-
                     break;
                 case M_Opcion_5_ModificarNom:
-
                     System.out.println("Escriu el DNI del soci per modificar el nom: ");
                     dni = sc.next();
-                    System.out.println("Escriu el nou nom");
+                    System.out.println("Escriu el nou nom: ");
                     nom = sc.next();
-                    this._club.canviarNomSoci(dni, nom);
+                    try {
+                        _club.canviarNomSoci(dni, nom);
+                    } catch (ExcepcioClub e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case M_Opcion_6_ModificarAsseguranca:
-                    System.out.println("Dni del soci:");
+                    System.out.println("Dni del soci: ");
                     dni = sc.next();
-                    System.out.println("Nou tipus d´assegurança:");
+                    System.out.println("Nou tipus d´assegurança: ");
                     tipus = sc.next();
-                    this._club.modificarAsseguranca(dni, tipus);
+                    try {
+                        _club.modificarAsseguranca(dni, tipus);
+                    } catch (ExcepcioClub e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
-
                 case M_Opcion_7_Guardar:
-                    this._club.guardarDades("clubUB.dat");
+                    try {
+                        _club.guardarDades("clubUB.dat");
+                    } catch (IOException | ExcepcioClub e) {
+                        System.out.println(e);
+                    }
                     break;
                 case M_Opcion_8_Recuperar:
-                    this._club.carregarDades("clubUB.dat");
+                    try {
+                        _club.carregarDades("clubUB.dat");
+                    } catch (IOException | ClassNotFoundException | ExcepcioClub e) {
+                        System.out.println(e);
+                    }
                     break;
                 case M_Opcion_9_Sortir:
                     System.out.println("Fins aviat!");
@@ -148,7 +165,7 @@ public class VistaClubUB {
         } while (opcionMenu != OpcionesMenu.M_Opcion_9_Sortir);
     }
 
-    public void gestioMenuSecundari(Scanner sc) throws ExcepcioClub {
+    public void gestioMenuSecundari(Scanner sc) {
         // Creación del objeto que representa el menu. El primer argumento del contructor es el nombre del menu
         Menu<OpcionesMenuSecundari> menuGestio = new Menu<>("Menu Secundari", OpcionesMenuSecundari.values());
         //Menu<OpcionesMenu> menuEstacio = new Menu<>("Menu " + estacio.getNomEstacio(), OpcionesMenu.values());
@@ -169,34 +186,45 @@ public class VistaClubUB {
             switch (opcionMenu) {
                 case M_Opcion_1_AfegirFederat:
                     System.out.println("Introdueix el nom del nou soci: ");
-                    nom=sc.nextLine();
+                    nom = sc.nextLine();
                     System.out.println("Introdueix el dni del soci: ");
-                    dni=sc.next();
+                    dni = sc.next();
                     System.out.println("Introdueix el tipus de federació: ");
-                    tipus=sc.next();
+                    tipus = sc.next();
                     System.out.println("Introdueix el preu de la federació (superior a 100): ");
-                    preu=sc.nextFloat();
-                    this._club.afegirSociFederat(nom, dni, preu, tipus);
+                    preu = sc.nextFloat();
+                    try {
+                        _club.afegirSociFederat(nom, dni, preu, tipus);
+                    } catch (ExcepcioClub e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
-                    
+
                 case M_Opcion_2_AfegirEstandard:
                     System.out.println("Introdueix el nom del nou soci: ");
-                    nom=sc.nextLine();
+                    nom = sc.nextLine();
                     System.out.println("Introdueix el dni del soci: ");
-                    dni=sc.next();
+                    dni = sc.next();
                     System.out.println("Introdueix el tipus de assegurança: ");
-                    tipus=sc.next();
+                    tipus = sc.next();
                     System.out.println("Introdueix el preu de l´assegurança: ");
-                    preu= sc.nextFloat();
-                    this._club.afegirSociEstandard(nom, dni, tipus, preu);
-
+                    preu = sc.nextFloat();
+                    try {
+                        _club.afegirSociEstandard(nom, dni, tipus, preu);
+                    } catch (ExcepcioClub e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case M_Opcion_3_AfegirJunior:
                     System.out.println("Introdueix el nom del nou soci: ");
-                    nom=sc.nextLine();
+                    nom = sc.nextLine();
                     System.out.println("Introdueix el dni del soci: ");
-                    dni=sc.next();
-                    this._club.afegirSociJunior(nom, dni);
+                    dni = sc.next();
+                    try {
+                        _club.afegirSociJunior(nom, dni);
+                    } catch (ExcepcioClub e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
             }
 

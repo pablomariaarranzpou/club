@@ -70,77 +70,47 @@ public class ClubUB {
     }
 
     public void afegirSociFederat(String nom, String dni, float preu, String nom_fede) throws ExcepcioClub {
-        if (!this._llistaSocis.isFull()) {
-            for (int i = 0; i < this._llistaSocis.getSize(); i++) {
-                if (this._llistaSocis.getAt(i).getDNI().equals(dni)) {
-                    throw new ExcepcioClub("JA EXISTEIX UN SOCI AMB AQUEST DNI");
-                }
-            }
-            Soci soci = new SociFederat(nom, dni, preu, nom_fede);
-            this._llistaSocis.addSoci(soci);
-        } else {
-            throw new ExcepcioClub("LA LLISTA DE SOCIS JA ESTÀ PLENA");
-        }
+        Soci soci = new SociFederat(nom, dni, preu, nom_fede);
+        _llistaSocis.addSoci(soci);
     }
-    
+
     public void afegirSociEstandard(String nom, String dni, String tipus, float preu_asseg) throws ExcepcioClub {
-        if (!this._llistaSocis.isFull()) {
-            for (int i = 0; i < this._llistaSocis.getSize(); i++) {
-                if (this._llistaSocis.getAt(i).getDNI().equals(dni)) {
-                    throw new ExcepcioClub("JA EXISTEIX UN SOCI AMB AQUEST DNI");
-                }
-                Soci soci = new SociEstandard(nom, dni, tipus, preu_asseg);
-                this._llistaSocis.addSoci(soci);
-            }
-        } else {
-            throw new ExcepcioClub("LA LLISTA DE SOCIS JA ESTÀ PLENA");
-        }
+        Soci soci = new SociEstandard(nom, dni, tipus, preu_asseg);
+        _llistaSocis.addSoci(soci);
     }
-    
-    public void afegirSociJunior(String nom, String dni) throws ExcepcioClub{
-        for (int i = 0; i < this._llistaSocis.getSize(); i++) {
-                if (this._llistaSocis.getAt(i).getDNI().equals(dni)) {
-                    throw new ExcepcioClub("JA EXISTEIX UN SOCI AMB AQUEST DNI");
-                }
-                Soci soci = new SociJunior(nom, dni);
-                this._llistaSocis.addSoci(soci);
-        }
+
+    public void afegirSociJunior(String nom, String dni) throws ExcepcioClub {
+        Soci soci = new SociJunior(nom, dni);
+        _llistaSocis.addSoci(soci);
     }
 
     public void guardarDades(String path) throws IOException, ExcepcioClub {
         File fitxer = new File(path);
         FileOutputStream fout;
         ObjectOutputStream oos;
-        try {
-            fout = new FileOutputStream(fitxer);
-            oos = new ObjectOutputStream(fout);
-            oos.writeObject(_llistaSocis);
-        } catch (IOException e) {
-            throw new ExcepcioClub("ERROR AL GUARDAR EL FITXER");
-        }
+
+        fout = new FileOutputStream(fitxer);
+        oos = new ObjectOutputStream(fout);
+        oos.writeObject(_llistaSocis);
         oos.close();
         fout.close();
-
     }
 
     public LlistaSocis carregarDades(String path) throws IOException, ClassNotFoundException, ExcepcioClub {
         File fitxer = new File(path);
         FileInputStream fin;
         ObjectInputStream ois;
-        try {
-            fin = new FileInputStream(fitxer);
-            ois = new ObjectInputStream(fin);
-            _llistaSocis = (LlistaSocis) ois.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            throw new ExcepcioClub("ERROR AL RECUPERAR EL FITXER");
-        }
+
+        fin = new FileInputStream(fitxer);
+        ois = new ObjectInputStream(fin);
+        _llistaSocis = (LlistaSocis) ois.readObject();
         fin.close();
         ois.close();
-        return _llistaSocis;
 
+        return _llistaSocis;
     }
 
-    public String imprimirLlistaSocis() {
+    public String llistaSocisToString() {
         return _llistaSocis.toString();
     }
 

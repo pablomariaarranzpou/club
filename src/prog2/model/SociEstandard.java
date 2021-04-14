@@ -50,7 +50,7 @@ public class SociEstandard extends Soci {
     }
 
     private void comprova(String asse) throws ExcepcioClub {
-        if (!asse.equals("Bàsica") && !asse.equals("Completa")) {
+        if (!asse.equals("Basica") && !asse.equals("Completa")) {
             throw new ExcepcioClub("El tipus d'assegurança no és correcte.");
         }
     }

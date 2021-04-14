@@ -14,11 +14,13 @@ import java.io.IOException;
 public class IniciadorClubUB {
 
     public static void main(String[] args) throws ExcepcioClub, IOException, ClassNotFoundException {
+        // Atributs necessaris pel Club
+        String nomClub = "ClubUB";
+
         // Creem l'objecte de la vista amb els atributs necessàris
-        VistaClubUB vistaClub = new VistaClubUB();
+        VistaClubUB vistaClub = new VistaClubUB(nomClub);
 
         // Inicialitzem l'execució de la vista
         vistaClub.gestioClubUB();
     }
-
 }
