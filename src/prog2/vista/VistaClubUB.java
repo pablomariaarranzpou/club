@@ -35,15 +35,14 @@ public class VistaClubUB {
 
     // Descripcion de las opciones del menu principal
     private static final String[] descMenu = {
-        "Donar d’alta un nou soci", // Mostra un menú per tal d’afegir un soci a la llista de socis
-        "Mostrar llista de socis",// Mostra el contingut de la llista de socis del ClubUB 
-        // mostrant davant de cada soci, el nombre de la seva posició a la llista començant per 1
+        "Donar d’alta un nou soci", // Mostra un menú per tal d’afegir un soci a la llista de socis.
+        "Mostrar llista de socis",// Mostra el contingut de la llista de socis del ClubUB mostrant davant de cada soci, el nombre de la seva posició a la llista començant per 1.
         "Eliminar soci", // Elimina un soci de la llista indicant la seva posició a la llista.
         "Mostrar factura", // Mostra el total que ha de pagar un soci determinat en la factura d’un mes, indicant el seu DNI i el número d’excursions que ha fet aquell mateix mes."
         "Modificar nom soci", // Permet canviar el nom d’un soci per un altre.
-        "Modificar tipus assegurança soci: Permet canviar el tipus d’assegurança d’un soci indicant el seu DNI i el nou tipus d’assegurança (“Bàsica” o “Completa”).", // Opcion 6
-        "Guardar llista: Guarda el contingut de la llista en un fitxer.", // Opcion 7
-        "Recuperar llista: Carrega el contingut", // Opcion 8
+        "Modificar tipus assegurança soci", //Permet canviar el tipus d’assegurança d’un soci indicant el seu DNI i el nou tipus d’assegurança (“Bàsica” o “Completa”).
+        "Guardar llista", //Guarda el contingut de la llista en un fitxer." 
+        "Recuperar llista" //Carrega el contingut"
     };
 
     // Funcion que gestiona el menu principal de la aplicacion
