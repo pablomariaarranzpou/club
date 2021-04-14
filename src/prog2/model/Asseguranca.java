@@ -10,36 +10,34 @@ package prog2.model;
  * @author arran
  */
 public class Asseguranca {
-    
-    private String tipus;
-    private float preu;
+
+    private String _tipus;
+    private float _preu;
 
     public Asseguranca(String tipus, float preu) {
-        this.tipus = tipus;
-        this.preu = preu;
+        _tipus = tipus;
+        _preu = preu;
     }
 
     public String getTipus() {
-        return tipus;
+        return _tipus;
     }
 
     public void setTipus(String tipus) {
-        this.tipus = tipus;
+        _tipus = tipus;
     }
 
     public float getPreu() {
-        return preu;
+        return _preu;
     }
 
     public void setPreu(float preu) {
-        this.preu = preu;
+        _preu = preu;
     }
 
     @Override
     public String toString() {
-        return "Assegurança: Tipus= "+tipus+", Preu= " + preu;
+        return "Assegurança: Tipus= " + _tipus + ", Preu= " + _preu;
     }
-    
-    
-    
+
 }
