@@ -47,7 +47,6 @@ public class ClubUB {
         for (int i = 0; i < this._llistaSocis.getSize(); i++) {
             if (this._llistaSocis.getAt(i).getDNI().equals(dni));
             soci = this._llistaSocis.getAt(i);
-            trobat = true;
         }
 
         if (trobat == true) {
