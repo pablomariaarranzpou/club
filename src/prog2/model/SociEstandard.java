@@ -11,11 +11,11 @@ import prog2.vista.ExcepcioClub;
  *
  * @author arran
  */
-public class SociEstandard extends Soci{
-    
-    private Asseguranca asseguranca; 
+public class SociEstandard extends Soci {
+
+    private Asseguranca asseguranca;
     private float preu;
-    
+
     public SociEstandard(String nom, String dni, String tipus_asse, float preu) throws ExcepcioClub {
         super(nom, dni);
         comprova(tipus_asse);
@@ -34,12 +34,28 @@ public class SociEstandard extends Soci{
 
     @Override
     public String toString() {
-        return "Soci Estàndar: Nom: "+ this.getNom() + ", DNI: "+ this.getDNI() +", "+ asseguranca.toString();
+        return "Nom: " + this.getNom() + ", DNI: " + this.getDNI() + ", " + asseguranca.toString();
     }
-    
-    public void comprova(String asse) throws ExcepcioClub{
-        if(!asse.equals("Completa") && !asse.equals("Completa")){
+
+    public void comprova(String asse) throws ExcepcioClub {
+        if (!asse.equals("Completa") && !asse.equals("Completa")) {
             throw new ExcepcioClub("TIPUS D´ASSEGURANÇA NO VÀLID");
-        }   
+        }
+    }
+
+    public Asseguranca getAsseguranca() {
+        return asseguranca;
+    }
+
+    public void setAsseguranca(Asseguranca asseguranca) {
+        this.asseguranca = asseguranca;
+    }
+
+    public float getPreu() {
+        return preu;
+    }
+
+    public void setPreu(float preu) {
+        this.preu = preu;
     }
 }

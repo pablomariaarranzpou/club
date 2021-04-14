@@ -18,18 +18,18 @@ public class SociJunior extends Soci{
     }
 
     @Override
-    public float calculaQuota(float quotaBase) throws ExcepcioClub {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public float calculaPreuExcursio(float baseExcursio) {
+        return 0;
     }
-
+    
     @Override
-    public float calculaPreuExcursio(float preuExcursioBase) throws ExcepcioClub {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public float calculaQuota(float quotaBase){        
+        return quotaBase;
     }
-
+    
     @Override
-    public String toString() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String toString(){ 
+        return "Nom: " + this.getNom() + ", DNI: " + this.getDNI();
     }
     
 }
