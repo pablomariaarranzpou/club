@@ -5,11 +5,13 @@
  */
 package prog2.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author arran
  */
-public class Asseguranca {
+public class Asseguranca implements Serializable{
 
     private String _tipus;
     private float _preu;

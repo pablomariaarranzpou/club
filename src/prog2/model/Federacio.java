@@ -5,11 +5,13 @@
  */
 package prog2.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author arran
  */
-public class Federacio {
+public class Federacio implements Serializable{
 
     private String _nom;
     private float _preu;
