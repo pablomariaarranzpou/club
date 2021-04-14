@@ -64,20 +64,32 @@ public class ClubUB {
             SociJunior sj = (SociJunior) soci;
             return sj.calculaQuota(QUOTA_MENSUAL);
         }else{
-            throw new ExcepcioClub("ERROR AL LLEGIR EL TIPUS DE SOCI");
+            throw new ExcepcioClub("ERROR AL RECONÈIXER EL TIPUS DE SOCI");
         }
     }
 
-    public void modificarAsseguranca(Soci soci, String tipus) throws ExcepcioClub {
-        if (soci instanceof SociEstandard) {
-            SociEstandard se = (SociEstandard) soci;
-            se.comprova(tipus);
-            se.getAsseguranca().setTipus(tipus);
+    public void modificarAsseguranca(String dni, String tipus) throws ExcepcioClub {
+        
+        Soci soci;
+        boolean trobat = false;
+        for (int i = 0; i < this._llistaSocis.getSize(); i++) {
+            if (this._llistaSocis.getAt(i).getDNI().equals(dni)) {
+                trobat = true;
+                soci = this._llistaSocis.getAt(i);
+                if (soci instanceof SociEstandard) {
+                    SociEstandard se = (SociEstandard) soci;
+                    se.comprova(tipus);
+                    se.getAsseguranca().setTipus(tipus);
 
-        } else {
-            throw new ExcepcioClub("EL TIPUS DE SOCI ÉS INVÀLID");
+                } else {
+                    throw new ExcepcioClub("EL TIPUS DE SOCI ÉS INVÀLID");
+                }
+            }
         }
-
+    
+        if(trobat == false){
+            throw new ExcepcioClub("SOCI NO TROBAT");
+        }
     }
 
     public void comprovaNumeroExcursions(int n) throws ExcepcioClub {
@@ -85,6 +97,7 @@ public class ClubUB {
             throw new ExcepcioClub("NUMERO DE EXCURSIONS INCORRECTE");
         }
     }
+    
 
 
     public void guardarDades(String path) throws IOException {
@@ -119,5 +132,7 @@ public class ClubUB {
         return _llistaSocis;
 
     }
+    
+    
 
 }

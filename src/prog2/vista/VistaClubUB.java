@@ -5,6 +5,7 @@
  */
 package prog2.vista;
 
+import java.io.IOException;
 import java.util.Scanner;
 import prog2.model.ClubUB;
 
@@ -17,10 +18,10 @@ public class VistaClubUB {
     private ClubUB _club;
 
     public VistaClubUB() {
-        _club = new ClubUB("Club_1");
+        _club = new ClubUB("Club UB");
     }
 
-    public void gestioClubUB() throws ExcepcioClub {
+    public void gestioClubUB() throws ExcepcioClub, IOException, ClassNotFoundException {
         Scanner sc = new Scanner(System.in);
         gestioMenu(sc);
     }
@@ -60,10 +61,10 @@ public class VistaClubUB {
     
     // Descripcio de les opcions del menú secundari
     private static final String[] descMenuSecundari = {
-        "Afegir soci federat", // Opcion 1
-        "Afegir soci estàndard",  // Opcion 2
-        "Afegir soci junior",  // Opcion 3
-        "Menú anterior"     // Opcion 4
+        "Afegir soci federat", // Afegeix al club un soci federat
+        "Afegir soci estàndard",  // Afegeix al club un soci estandard
+        "Afegir soci junior",  // Afegeix al club un soci junior
+        "Menú anterior"     // Torna al menu principal.
     };
 
     // Funcions que gestiona el menu principal de l'aplicació
@@ -71,7 +72,7 @@ public class VistaClubUB {
     //   1. Crear el objeto que representa (contiene) el menu
     //   2. Asignar las descripciones del menu
     //   3. Bucle donde se trata la opcion seleccionada por el usuario
-    public void gestioMenu(Scanner sc) throws ExcepcioClub {
+    public void gestioMenu(Scanner sc) throws ExcepcioClub, IOException, ClassNotFoundException {
         // Creación del objeto que representa el menu. El primer argumento del contructor es el nombre del menu
         Menu<OpcionesMenu> menu = new Menu<>("Menu " + _club.getNomClub(), OpcionesMenu.values());
         //Menu<OpcionesMenu> menuEstacio = new Menu<>("Menu " + estacio.getNomEstacio(), OpcionesMenu.values());
@@ -85,6 +86,7 @@ public class VistaClubUB {
 
         // Lanzar el bucle principal de la aplicación
         do {
+            String tipus, dni;
             menu.mostrarMenu();
             opcionMenu = menu.getOpcio(sc);
 
@@ -105,9 +107,18 @@ public class VistaClubUB {
 
                     break;
                 case M_Opcion_6_ModificarAsseguranca:
-
+                    System.out.println("Dni del soci:");
+                    dni = sc.next();
+                    System.out.println("Nou tipus d´assegurança:");
+                    tipus = sc.next();
+                    this._club.modificarAsseguranca(dni, tipus);
+                    break;
+                    
+                case M_Opcion_7_Guardar:
+                    this._club.guardarDades("clubUB.dat");
                     break;
                 case M_Opcion_8_Recuperar:
+                    this._club.carregarDades("clubUB.dat");
                     break;
                 case M_Opcion_9_Sortir:
                     System.out.println("Fins aviat!");
