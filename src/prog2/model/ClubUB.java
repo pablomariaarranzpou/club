@@ -12,7 +12,13 @@ package prog2.model;
 public class ClubUB {
     
     private String nomClub;
-    private LlistaSocis _llistaSocis; 
+    private LlistaSocis _llistaSocis;
+    
+    // Constants
+    public static final float PREU_PER_EXCURSIO = 20;
+    public static final float QUOTA_MENSUAL = 25;
+    public static final float DESCOMPTE_EXCURSIO = 0.2f;
+    public static final float DESCOMPTE_QUOTA = 0.3f;
     
     public ClubUB(String nom) {
         this.nomClub = nom;
