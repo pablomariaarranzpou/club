@@ -8,6 +8,7 @@ package prog2.vista;
 import java.io.IOException;
 
 /**
+ * IniciadorClubUB
  *
  * @author arran
  */
@@ -15,6 +16,7 @@ public class IniciadorClubUB {
 
     /**
      * Main que inicilitza tot el programa.
+     *
      * @param args
      * @throws ExcepcioClub
      * @throws IOException

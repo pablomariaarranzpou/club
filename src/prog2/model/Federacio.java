@@ -8,16 +8,18 @@ package prog2.model;
 import java.io.Serializable;
 
 /**
+ * Classe Federació per Socis Federats
  *
  * @author arran
  */
-public class Federacio implements Serializable{
+public class Federacio implements Serializable {
 
     private String _nom;
     private float _preu;
 
     /**
      * Constructor federació
+     *
      * @param nom
      * @param preu
      */
@@ -28,6 +30,7 @@ public class Federacio implements Serializable{
 
     /**
      * Getter nom federació.
+     *
      * @return
      */
     public String getNom() {
@@ -36,6 +39,7 @@ public class Federacio implements Serializable{
 
     /**
      * Setter nom federacio
+     *
      * @param nom
      */
     public void setNom(String nom) {
@@ -44,6 +48,7 @@ public class Federacio implements Serializable{
 
     /**
      * Getter Preu federació
+     *
      * @return
      */
     public float getPreu() {
@@ -52,6 +57,7 @@ public class Federacio implements Serializable{
 
     /**
      * Setter preu federacio
+     *
      * @param preu
      */
     public void setPreu(float preu) {
@@ -60,6 +66,7 @@ public class Federacio implements Serializable{
 
     /**
      * toString de Federacio
+     *
      * @return
      */
     @Override

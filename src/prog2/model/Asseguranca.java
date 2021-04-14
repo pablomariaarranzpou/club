@@ -8,16 +8,18 @@ package prog2.model;
 import java.io.Serializable;
 
 /**
+ * Classe Assegurnça implementa serializable per poder guardar-se
  *
  * @author arran
  */
-public class Asseguranca implements Serializable{
+public class Asseguranca implements Serializable {
 
     private String _tipus;
     private float _preu;
 
     /**
      * Constructor Classe Assegurança
+     *
      * @param tipus
      * @param preu
      */
@@ -28,6 +30,7 @@ public class Asseguranca implements Serializable{
 
     /**
      * Getter del tipus d´assegurança
+     *
      * @return
      */
     public String getTipus() {
@@ -36,6 +39,7 @@ public class Asseguranca implements Serializable{
 
     /**
      * Setter del tipus d´assegurança
+     *
      * @param tipus
      */
     public void setTipus(String tipus) {
@@ -44,6 +48,7 @@ public class Asseguranca implements Serializable{
 
     /**
      * Getter del preu de l´assegurança
+     *
      * @return
      */
     public float getPreu() {
@@ -52,6 +57,7 @@ public class Asseguranca implements Serializable{
 
     /**
      * Setter del preu de l´assegurança
+     *
      * @param preu
      */
     public void setPreu(float preu) {
@@ -60,6 +66,7 @@ public class Asseguranca implements Serializable{
 
     /**
      * Métode toString de la classe assegurança
+     *
      * @return
      */
     @Override

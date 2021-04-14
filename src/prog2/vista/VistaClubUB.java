@@ -10,6 +10,7 @@ import java.util.Scanner;
 import prog2.model.ClubUB;
 
 /**
+ * VistaClubUB
  *
  * @author arran
  */
@@ -19,6 +20,7 @@ public class VistaClubUB {
 
     /**
      * Inicialitza el club
+     *
      * @param nomClub
      */
     public VistaClubUB(String nomClub) {
@@ -79,7 +81,6 @@ public class VistaClubUB {
     //   1. Crear el objeto que representa (contiene) el menu
     //   2. Asignar las descripciones del menu
     //   3. Bucle donde se trata la opcion seleccionada por el usuario
-
     /**
      *
      * @param sc
@@ -179,6 +180,7 @@ public class VistaClubUB {
 
     /**
      * Gestiona el menu secunadri de la opcio de donar d´alta
+     *
      * @param sc
      */
     public void gestioMenuSecundari(Scanner sc) {

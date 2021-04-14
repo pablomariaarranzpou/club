@@ -8,6 +8,7 @@ package prog2.model;
 import prog2.vista.ExcepcioClub;
 
 /**
+ * Classe filla de Soci.
  *
  * @author arran
  */
@@ -17,6 +18,7 @@ public class SociEstandard extends Soci {
 
     /**
      * Constructor per defecte de la classe SociEstandard
+     *
      * @param nom
      * @param dni
      * @param asseguranca
@@ -27,9 +29,11 @@ public class SociEstandard extends Soci {
         comprova(asseguranca.getTipus());
         _asseguranca = asseguranca;
     }
-    
+
     /**
-     * Métode abstracte implmentat a les classes filles(explicaciói a classe Soci)
+     * Métode abstracte implmentat a les classes filles(explicaciói a classe
+     * Soci)
+     *
      * @param quotaBase
      * @return
      * @throws prog2.vista.ExcepcioClub
@@ -38,9 +42,11 @@ public class SociEstandard extends Soci {
     public float calculaQuota(float quotaBase) throws ExcepcioClub {
         return quotaBase;
     }
-    
+
     /**
-     * Métode abstracte implmentat a les classes filles(explicaciói a classe Soci)
+     * Métode abstracte implmentat a les classes filles(explicaciói a classe
+     * Soci)
+     *
      * @param preuExcursioBase
      * @return
      * @throws prog2.vista.ExcepcioClub
@@ -52,6 +58,7 @@ public class SociEstandard extends Soci {
 
     /**
      * Retorna la informacio del soci a una string
+     *
      * @return
      */
     @Override
@@ -61,6 +68,7 @@ public class SociEstandard extends Soci {
 
     /**
      * Retorna l´assegurança del soci
+     *
      * @return
      */
     public Asseguranca getAsseguranca() {
@@ -69,14 +77,16 @@ public class SociEstandard extends Soci {
 
     /**
      * Canvia l´assegurança del soci
+     *
      * @param asseguranca
      */
     public void setAsseguranca(Asseguranca asseguranca) {
         _asseguranca = asseguranca;
     }
-    
+
     /**
      * Modifica el tipus d´assegurança
+     *
      * @param tipusAsseguranca
      * @throws ExcepcioClub
      */
@@ -84,9 +94,10 @@ public class SociEstandard extends Soci {
         comprova(tipusAsseguranca);
         _asseguranca.setTipus(tipusAsseguranca);
     }
-    
+
     /**
      * Comprova si el tipus de l´assegurança es vàlid
+     *
      * @param tipusAsseguranca
      * @throws ExcepcioClub
      */

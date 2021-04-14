@@ -6,6 +6,7 @@
 package prog2.vista;
 
 /**
+ * Exepció prinicipal
  *
  * @author Pablo
  */
@@ -13,10 +14,11 @@ public class ExcepcioClub extends Exception {
 
     /**
      * Exepció prinicipal quer farem servir a tot el programa,
+     *
      * @param msj
      */
     public ExcepcioClub(String msj) {
         super(msj);
     }
-    
+
 }

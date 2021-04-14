@@ -11,6 +11,7 @@ import static prog2.model.ClubUB.DESCOMPTE_QUOTA;
 import static prog2.model.ClubUB.DESCOMPTE_EXCURSIO;
 
 /**
+ * Classe filla de Soci.
  *
  * @author arran
  */
@@ -31,19 +32,21 @@ public class SociFederat extends Soci {
         comprova(federacio.getPreu());
         _federacio = federacio;
     }
+
     /**
-     * 
+     *
      * @param baseExcursio
-     * @return 
+     * @return
      */
     @Override
     public float calculaPreuExcursio(float baseExcursio) {
         return baseExcursio - (baseExcursio * DESCOMPTE_EXCURSIO);
     }
+
     /**
-     * 
+     *
      * @param quotaBase
-     * @return 
+     * @return
      */
     @Override
     public float calculaQuota(float quotaBase) {
@@ -61,6 +64,7 @@ public class SociFederat extends Soci {
 
     /**
      * Retorna la federació d´un soci en concret
+     *
      * @return Federació
      */
     public Federacio getFederacio() {
@@ -69,6 +73,7 @@ public class SociFederat extends Soci {
 
     /**
      * Setter de la federacio d´un soci
+     *
      * @param federacio
      */
     public void setFederacio(Federacio federacio) {
@@ -77,6 +82,7 @@ public class SociFederat extends Soci {
 
     /**
      * Getter del tipus de federació d´un soci
+     *
      * @return
      */
     public String getTipusFederacio() {
@@ -85,16 +91,19 @@ public class SociFederat extends Soci {
 
     /**
      * Setter del tipus de federació d´un soci
+     *
      * @param tipus_federacio
      */
     public void setTipusFederacio(String tipus_federacio) {
         _tipusFederacio = tipus_federacio;
     }
-    
+
     /**
-     * Conmprova que no fa més exucrsions diaries que dies te com a máxim un mes.
+     * Conmprova que no fa més exucrsions diaries que dies te com a máxim un
+     * mes.
+     *
      * @param preu
-     * @throws ExcepcioClub 
+     * @throws ExcepcioClub
      */
     private void comprova(float preu) throws ExcepcioClub {
         if (preu < 100) {

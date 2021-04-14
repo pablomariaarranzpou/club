@@ -14,6 +14,7 @@ import java.io.ObjectOutputStream;
 import prog2.vista.ExcepcioClub;
 
 /**
+ * Classe ClubUB això serà el pont entre la vista i les dades
  *
  * @author arran
  */
@@ -22,8 +23,7 @@ public class ClubUB {
     private String _nomClub;
     private LlistaSocis _llistaSocis;
 
-    // Constants
-
+    // CONSTANTS
     /**
      * CONSTANT DE PREU D´EXCURSIÓ
      */
@@ -54,7 +54,7 @@ public class ClubUB {
     }
 
     /**
-     *  
+     *
      * @return Nom del Club
      */
     public String getNomClub() {
@@ -63,6 +63,7 @@ public class ClubUB {
 
     /**
      * Actualitza el nom del club
+     *
      * @param nomClub
      */
     public void setNomClub(String nomClub) {
@@ -71,6 +72,7 @@ public class ClubUB {
 
     /**
      * Canvia el nom d´un soci amb dni concret.
+     *
      * @param dni
      * @param nouNom
      * @throws ExcepcioClub
@@ -82,6 +84,7 @@ public class ClubUB {
 
     /**
      * Calcula la factura mensual d´un soci amb dni concret
+     *
      * @param dni
      * @param num
      * @return
@@ -94,6 +97,7 @@ public class ClubUB {
 
     /**
      * Modifica l´assegurança d´un soci amb un dni concret
+     *
      * @param dni
      * @param tipus
      * @throws ExcepcioClub
@@ -112,6 +116,7 @@ public class ClubUB {
 
     /**
      * Comprova si fa més d´una excursio al dia en un mes.
+     *
      * @param n
      * @throws ExcepcioClub
      */
@@ -123,6 +128,7 @@ public class ClubUB {
 
     /**
      * Afegeix Soci federat a llista socis.
+     *
      * @param nom
      * @param dni
      * @param preu
@@ -137,6 +143,7 @@ public class ClubUB {
 
     /**
      * Afegeix Soci estandard a llista socis.
+     *
      * @param nom
      * @param dni
      * @param tipus
@@ -151,6 +158,7 @@ public class ClubUB {
 
     /**
      * Afegeix Soci Junior a llista socis.
+     *
      * @param nom
      * @param dni
      * @throws ExcepcioClub
@@ -162,6 +170,7 @@ public class ClubUB {
 
     /**
      * Guarda les dades a un fitxer.
+     *
      * @param path
      * @throws IOException
      * @throws ExcepcioClub
@@ -180,6 +189,7 @@ public class ClubUB {
 
     /**
      * Recupera les dades d´un fitxer
+     *
      * @param path
      * @return
      * @throws IOException
@@ -202,6 +212,7 @@ public class ClubUB {
 
     /**
      * Retorna en una string la llista de socis
+     *
      * @return
      */
     public String llistaSocisToString() {
@@ -210,10 +221,11 @@ public class ClubUB {
 
     /**
      * Elimina un soci d´una posició en concret
+     *
      * @param posicio
      * @throws ExcepcioClub
      */
     public void eliminarSoci(int posicio) throws ExcepcioClub {
-       _llistaSocis.removeSoci(_llistaSocis.getAt(posicio));
+        _llistaSocis.removeSoci(_llistaSocis.getAt(posicio));
     }
 }

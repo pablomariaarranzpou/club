@@ -9,17 +9,18 @@ import java.io.Serializable;
 import prog2.vista.ExcepcioClub;
 
 /**
+ * Classe Soci Mare dels tipus de Socis
  *
  * @author arran
  */
 public abstract class Soci implements InSoci, Serializable {
 
-
     protected String _nom;
     protected String _dni;
 
     /**
-     *Constructor per defecte de la classe Soci
+     * Constructor per defecte de la classe Soci
+     *
      * @param nom
      * @param dni
      */
@@ -30,6 +31,7 @@ public abstract class Soci implements InSoci, Serializable {
 
     /**
      * Setter del nom d´un soci
+     *
      * @param nom
      */
     @Override
@@ -39,6 +41,7 @@ public abstract class Soci implements InSoci, Serializable {
 
     /**
      * Getter del nom d´un Soci
+     *
      * @return
      */
     @Override
@@ -48,6 +51,7 @@ public abstract class Soci implements InSoci, Serializable {
 
     /**
      * Setter del DNI d´un Soci
+     *
      * @param dni
      */
     @Override
@@ -57,23 +61,26 @@ public abstract class Soci implements InSoci, Serializable {
 
     /**
      * Getter del Nom d´un soci.
+     *
      * @return
      */
     @Override
     public String getDNI() {
         return _dni;
     }
-    
+
     /**
      * Métode abstracte implmentat a les classes filles( veure classes filles)
+     *
      * @return
      * @throws prog2.vista.ExcepcioClub
      */
     @Override
     public abstract float calculaQuota(float quotaBase) throws ExcepcioClub;
-    
+
     /**
      * Métode abstracte implmentat a les classes filles( veure classes filles)
+     *
      * @return
      * @throws prog2.vista.ExcepcioClub
      */
@@ -82,6 +89,7 @@ public abstract class Soci implements InSoci, Serializable {
 
     /**
      * Métode abstracte implmentat a les classes filles( veure classes filles)
+     *
      * @return
      */
     @Override
@@ -89,6 +97,7 @@ public abstract class Soci implements InSoci, Serializable {
 
     /**
      * Retorna si un objecte el seu dni es igual
+     *
      * @param obj
      * @return
      */

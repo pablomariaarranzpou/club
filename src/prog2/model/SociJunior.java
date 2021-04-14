@@ -6,12 +6,14 @@
 package prog2.model;
 
 /**
+ * Classe filla de Soci.
  *
  * @author arran
  */
 public class SociJunior extends Soci {
 
     /**
+     * Cosntructor de la Classe Junior
      *
      * @param nom
      * @param dni
@@ -20,17 +22,30 @@ public class SociJunior extends Soci {
         super(nom, dni);
     }
 
+    /**
+     * Calcul preu per excursio del soci junior
+     *
+     * @param baseExcursio
+     * @return
+     */
     @Override
     public float calculaPreuExcursio(float baseExcursio) {
         return 0;
     }
 
+    /**
+     * Calcul de la quota del soci junior
+     *
+     * @param quotaBase
+     * @return
+     */
     @Override
     public float calculaQuota(float quotaBase) {
         return quotaBase;
     }
 
     /**
+     * Retorna la informaci del soci junir a una String
      *
      * @return
      */
