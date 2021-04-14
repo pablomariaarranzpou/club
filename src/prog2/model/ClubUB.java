@@ -12,14 +12,32 @@ package prog2.model;
 public class ClubUB {
     
     private String nomClub;
+    private LlistaSocis _llistaSocis; 
     
     public ClubUB(String nom) {
         this.nomClub = nom;
+        this._llistaSocis = new LlistaSocis();
     }
-
+    
     public String getNomClub() {
         return nomClub;
     }
+
+    public void setNomClub(String nomClub) {
+        this.nomClub = nomClub;
+    }
+
+    public LlistaSocis getLlistaSocis() {
+        return _llistaSocis;
+    }
+
+    public void setLlistaSocis(LlistaSocis _llistaSocis) {
+        this._llistaSocis = _llistaSocis;
+    }
+
+    
+    
+    
     
   
     

@@ -11,7 +11,7 @@ import prog2.vista.ExcepcioClub;
  *
  * @author arran
  */
-public class Soci implements InSoci {
+public abstract class Soci implements InSoci {
 
     private String nom;
     private String dni;
@@ -42,14 +42,13 @@ public class Soci implements InSoci {
     }
 
     @Override
-    public float calculaQuota(float quotaBase) throws ExcepcioClub {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public abstract float calculaQuota(float quotaBase) throws ExcepcioClub;
 
     @Override
-    public float calculaPreuExcursio(float preuExcursioBase) throws ExcepcioClub {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public abstract float calculaPreuExcursio(float preuExcursioBase) throws ExcepcioClub;
+
+    @Override
+    public abstract String toString();
 
 
     

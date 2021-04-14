@@ -19,8 +19,7 @@ public class LlistaSocis implements InSociList {
     public LlistaSocis() {
         this._llistaSocis = new ArrayList<Soci>(100);
     }
-    
-    
+
     @Override
     public int getSize() {
         return this._llistaSocis.size();
