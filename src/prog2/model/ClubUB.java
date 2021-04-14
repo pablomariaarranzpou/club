@@ -59,38 +59,36 @@ public class ClubUB {
             return (sf.calculaQuota(QUOTA_MENSUAL) * (DESCOMPTE_QUOTA) + sf.getFederacio().getPreu()) + num * (sf.calculaPreuExcursio(PREU_PER_EXCURSIO) * DESCOMPTE_EXCURSIO);
         } else if (soci instanceof SociEstandard) {
             SociEstandard se = (SociEstandard) soci;
-            return (num * (se.calculaPreuExcursio(PREU_PER_EXCURSIO) + se.getAsseguranca().getPreu())) + se.calculaQuota(QUOTA_MENSUAL);
-        } else {
+            return se.calculaQuota(QUOTA_MENSUAL) + (num * (se.calculaPreuExcursio(PREU_PER_EXCURSIO) + se.getAsseguranca().getPreu()));
+        } else if (soci instanceof SociJunior){
             SociJunior sj = (SociJunior) soci;
             return sj.calculaQuota(QUOTA_MENSUAL);
+        }else{
+            throw new ExcepcioClub("ERROR AL LLEGIR EL TIPUS DE SOCI");
         }
     }
 
     public void modificarAsseguranca(Soci soci, String tipus) throws ExcepcioClub {
         if (soci instanceof SociEstandard) {
             SociEstandard se = (SociEstandard) soci;
-            try {
-                se.comprova(tipus);
-                se.getAsseguranca().setTipus(tipus);
+            se.comprova(tipus);
+            se.getAsseguranca().setTipus(tipus);
 
-            } catch (ExcepcioClub e) {
-                throw e;
-            }
         } else {
             throw new ExcepcioClub("EL TIPUS DE SOCI ÉS INVÀLID");
         }
 
     }
 
-    public void comprovaNumeroExcursions(int numero) throws ExcepcioClub {
-        if (numero > 31 || numero < 0) {
+    public void comprovaNumeroExcursions(int n) throws ExcepcioClub {
+        if (n < 0 || n > 31) {
             throw new ExcepcioClub("NUMERO DE EXCURSIONS INCORRECTE");
         }
     }
 
 
-    public void guardarDades(String cami) throws IOException {
-        File fitxer = new File(cami);
+    public void guardarDades(String path) throws IOException {
+        File fitxer = new File(path);
         FileOutputStream fout;
         ObjectOutputStream oos;
         try {
@@ -105,8 +103,8 @@ public class ClubUB {
 
     }
 
-    public LlistaSocis carregarDades(String camiOrigen) throws IOException, ClassNotFoundException {
-        File fitxer = new File(camiOrigen);
+    public LlistaSocis carregarDades(String path) throws IOException, ClassNotFoundException {
+        File fitxer = new File(path);
         FileInputStream fin;
         ObjectInputStream ois;
         try {
