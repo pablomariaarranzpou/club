@@ -5,8 +5,6 @@
  */
 package prog2.model;
 
-import prog2.vista.ExcepcioClub;
-
 /**
  *
  * @author arran

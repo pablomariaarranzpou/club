@@ -11,7 +11,7 @@ package prog2.vista;
  */
 public class IniciadorClubUB {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ExcepcioClub {
         // Creem l'objecte de la vista amb els atributs necessàris
         VistaClubUB vistaClub = new VistaClubUB();
 
