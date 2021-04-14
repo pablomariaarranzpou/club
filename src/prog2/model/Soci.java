@@ -5,13 +5,14 @@
  */
 package prog2.model;
 
+import java.io.Serializable;
 import prog2.vista.ExcepcioClub;
 
 /**
  *
  * @author arran
  */
-public abstract class Soci implements InSoci {
+public abstract class Soci implements InSoci, Serializable {
 
     protected String _nom;
     protected String _dni;

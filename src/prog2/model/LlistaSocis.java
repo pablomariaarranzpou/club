@@ -5,6 +5,7 @@
  */
 package prog2.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import prog2.vista.ExcepcioClub;
 
@@ -12,7 +13,7 @@ import prog2.vista.ExcepcioClub;
  *
  * @author arran
  */
-public class LlistaSocis implements InSociList {
+public class LlistaSocis implements InSociList, Serializable {
 
     private final ArrayList<Soci> _llistaSocis;
     private int _capacitatMax = 100;

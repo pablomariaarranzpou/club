@@ -159,7 +159,8 @@ public class VistaClubUB {
 
         // Variable (de tipo enumerado igual a las opciones del menu) que contiene la opcion escogida
         OpcionesMenuSecundari opcionMenu;
-
+        String nom, tipus, dni;
+        float preu;
         // Lançar el bucle principal de la aplicación
         do {
             menuGestio.mostrarMenu();
@@ -167,13 +168,35 @@ public class VistaClubUB {
 
             switch (opcionMenu) {
                 case M_Opcion_1_AfegirFederat:
-
+                    System.out.println("Introdueix el nom del nou soci: ");
+                    nom=sc.nextLine();
+                    System.out.println("Introdueix el dni del soci: ");
+                    dni=sc.next();
+                    System.out.println("Introdueix el tipus de federació: ");
+                    tipus=sc.next();
+                    System.out.println("Introdueix el preu de la federació (superior a 100): ");
+                    preu=sc.nextFloat();
+                    this._club.afegirSociFederat(nom, dni, preu, tipus);
                     break;
+                    
                 case M_Opcion_2_AfegirEstandard:
+                    System.out.println("Introdueix el nom del nou soci: ");
+                    nom=sc.nextLine();
+                    System.out.println("Introdueix el dni del soci: ");
+                    dni=sc.next();
+                    System.out.println("Introdueix el tipus de assegurança: ");
+                    tipus=sc.next();
+                    System.out.println("Introdueix el preu de l´assegurança: ");
+                    preu= sc.nextFloat();
+                    this._club.afegirSociEstandard(nom, dni, tipus, preu);
 
                     break;
                 case M_Opcion_3_AfegirJunior:
-
+                    System.out.println("Introdueix el nom del nou soci: ");
+                    nom=sc.nextLine();
+                    System.out.println("Introdueix el dni del soci: ");
+                    dni=sc.next();
+                    this._club.afegirSociJunior(nom, dni);
                     break;
             }
 
